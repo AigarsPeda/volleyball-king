@@ -1,26 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { ThemeProvider } from "@material-ui/core/styles";
+import theme from "./ui/Theme";
+import Form from "./components/Form";
 
-function App() {
+const App: React.FC = () => {
+  const [name1, setName1] = useState<string>("");
+  const [name2, setName2] = useState<string>("");
+  const [name3, setName3] = useState<string>("");
+  const [name4, setName4] = useState<string>("");
+  const [name5, setName5] = useState<string>("");
+
+  const namesObj = { name1, name2, name3, name4, name5 };
+  const setNamesObj = { setName1, setName2, setName3, setName4, setName5 };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      {console.log(name1)}
+      {console.log(name2)}
+      {console.log(name3)}
+      {console.log(name4)}
+      {console.log(name5)}
+      <Form namesObj={namesObj} setNamesObj={setNamesObj} />
+    </ThemeProvider>
   );
-}
+};
 
 export default App;
