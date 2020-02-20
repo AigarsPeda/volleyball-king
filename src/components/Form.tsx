@@ -23,6 +23,7 @@ const Form: React.FC<IForm> = props => {
   const [name3, setName3] = useState<string>("");
   const [name4, setName4] = useState<string>("");
   const [name5, setName5] = useState<string>("");
+  const [showingForm, setShowingForm] = useState(true);
   const classes = useStyles();
   const { savePlayerArrayToSate } = props;
 
@@ -60,53 +61,72 @@ const Form: React.FC<IForm> = props => {
     };
     const newPlayerArray = [player1, player2, player3, player4, player5];
     savePlayerArrayToSate(newPlayerArray);
+    setShowingForm(false);
   };
+
+  const editPlayerName = () => {
+    setShowingForm(true);
+  };
+
   return (
-    <form className={classes.root} onSubmit={makeArrayOfPlayers}>
-      <TextField
-        label="Spēlētāja vārds"
-        required
-        value={name1}
-        onChange={e => setName1(e.target.value)}
-        margin="normal"
-      />
-      <TextField
-        label="Spēlētāja vārds"
-        required
-        value={name2}
-        onChange={e => setName2(e.target.value)}
-        margin="normal"
-      />
-      <TextField
-        label="Spēlētāja vārds"
-        required
-        value={name3}
-        onChange={e => setName3(e.target.value)}
-        margin="normal"
-      />
-      <TextField
-        label="Spēlētāja vārds"
-        required
-        value={name4}
-        onChange={e => setName4(e.target.value)}
-        margin="normal"
-      />
-      <TextField
-        label="Spēlētāja vārds"
-        required
-        value={name5}
-        onChange={e => setName5(e.target.value)}
-        margin="normal"
-      />
-      <Button
-        variant="contained"
-        color="primary"
-        className={classes.button}
-        type="submit"
-      >
-        Saglabāt
-      </Button>
-    </form>
+    <div>
+      {showingForm ? (
+        <form className={classes.root} onSubmit={makeArrayOfPlayers}>
+          <TextField
+            label="Spēlētāja vārds"
+            required
+            value={name1}
+            onChange={e => setName1(e.target.value)}
+            margin="normal"
+          />
+          <TextField
+            label="Spēlētāja vārds"
+            required
+            value={name2}
+            onChange={e => setName2(e.target.value)}
+            margin="normal"
+          />
+          <TextField
+            label="Spēlētāja vārds"
+            required
+            value={name3}
+            onChange={e => setName3(e.target.value)}
+            margin="normal"
+          />
+          <TextField
+            label="Spēlētāja vārds"
+            required
+            value={name4}
+            onChange={e => setName4(e.target.value)}
+            margin="normal"
+          />
+          <TextField
+            label="Spēlētāja vārds"
+            required
+            value={name5}
+            onChange={e => setName5(e.target.value)}
+            margin="normal"
+          />
+          <Button
+            variant="contained"
+            color="primary"
+            className={classes.button}
+            type="submit"
+          >
+            Saglabāt
+          </Button>
+        </form>
+      ) : (
+        <Button
+          onClick={editPlayerName}
+          variant="outlined"
+          color="secondary"
+          type="button"
+        >
+          Labot spēlētāju vārdus
+        </Button>
+      )}
+    </div>
   );
 };
 

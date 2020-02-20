@@ -1,21 +1,24 @@
 import React, { useState } from "react";
 import { ThemeProvider } from "@material-ui/core/styles";
 import theme from "./ui/Theme";
+// import { Button } from "@material-ui/core";
 import Form from "./components/Form";
 
 const App: React.FC = () => {
-  const [showingForm, setShowingForm] = useState(true);
+  const [showingEditButton, setShowingEditButton] = useState(false);
   const [playerArray, setPlayerArray] = useState<Player[]>();
 
   const savePlayerArrayToSate = (newArray: Player[]) => {
     setPlayerArray([...newArray]);
-    setShowingForm(false);
+    setShowingEditButton(true);
   };
 
   return (
     <ThemeProvider theme={theme}>
       {console.log(playerArray)}
-      {showingForm && <Form savePlayerArrayToSate={savePlayerArrayToSate} />}
+      {console.log(showingEditButton)}
+
+      <Form savePlayerArrayToSate={savePlayerArrayToSate} />
     </ThemeProvider>
   );
 };
