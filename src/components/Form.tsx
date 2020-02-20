@@ -1,12 +1,14 @@
 import React, { useState } from "react";
-import { Button, TextField, makeStyles, Theme } from "@material-ui/core";
+import { Button, TextField, makeStyles, Theme, Grid } from "@material-ui/core";
 
 const useStyles = makeStyles((theme: Theme) => ({
-  text: {},
   root: {
+    margin: "auto",
+    maxWidth: "25em"
+  },
+  form: {
     display: "flex",
-    flexDirection: "column",
-    width: "25em"
+    flexDirection: "column"
   },
   button: {
     marginTop: "10px"
@@ -69,9 +71,9 @@ const Form: React.FC<IForm> = props => {
   };
 
   return (
-    <div>
+    <div className={classes.root}>
       {showingForm ? (
-        <form className={classes.root} onSubmit={makeArrayOfPlayers}>
+        <form className={classes.form} onSubmit={makeArrayOfPlayers}>
           <TextField
             label="Spēlētāja vārds"
             required
