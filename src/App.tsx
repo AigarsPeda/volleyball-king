@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ThemeProvider } from "@material-ui/core/styles";
 import theme from "./ui/Theme";
 import Form from "./components/Form";
@@ -10,16 +10,14 @@ const App: React.FC = () => {
   const [name4, setName4] = useState<string>("");
   const [name5, setName5] = useState<string>("");
 
+  const [playerArray, setPlayerArray] = useState<string[]>();
+
   const namesObj = { name1, name2, name3, name4, name5 };
   const setNamesObj = { setName1, setName2, setName3, setName4, setName5 };
 
   return (
     <ThemeProvider theme={theme}>
-      {console.log(name1)}
-      {console.log(name2)}
-      {console.log(name3)}
-      {console.log(name4)}
-      {console.log(name5)}
+      {console.log(playerArray)}
       <Form namesObj={namesObj} setNamesObj={setNamesObj} />
     </ThemeProvider>
   );
