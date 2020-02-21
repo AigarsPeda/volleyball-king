@@ -3,6 +3,7 @@ import { ThemeProvider } from "@material-ui/core/styles";
 import theme from "./ui/Theme";
 // import { Button } from "@material-ui/core";
 import Form from "./components/Form";
+import Game from "./components/Game";
 
 const NUMBER_OF_PLAYERS = 5;
 
@@ -34,6 +35,7 @@ const App: React.FC = () => {
       ) : (
         <h2>Tabula</h2>
       )}
+      <Game />
     </ThemeProvider>
   );
 };
