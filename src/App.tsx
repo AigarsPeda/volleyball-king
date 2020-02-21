@@ -4,21 +4,29 @@ import theme from "./ui/Theme";
 // import { Button } from "@material-ui/core";
 import Form from "./components/Form";
 
-const App: React.FC = () => {
-  const [showingEditButton, setShowingEditButton] = useState(false);
-  const [playerArray, setPlayerArray] = useState<Player[]>();
+const NUMBER_OF_PLAYERS = 5;
 
-  const savePlayerArrayToSate = (newArray: Player[]) => {
-    setPlayerArray([...newArray]);
-    setShowingEditButton(true);
+const App: React.FC = () => {
+  const [playerArray, setPlayerArray] = useState<Player[]>([]);
+
+  const savePlayerArrayToSate = (name: string) => {
+    const newPlayer: Player = {
+      id: 1,
+      name: name,
+      smallPoints: 0,
+      bigPoints: 0
+    };
+    setPlayerArray([...playerArray, newPlayer]);
   };
 
   return (
     <ThemeProvider theme={theme}>
       {console.log(playerArray)}
-      {console.log(showingEditButton)}
-
-      <Form savePlayerArrayToSate={savePlayerArrayToSate} />
+      {playerArray?.length < NUMBER_OF_PLAYERS ? (
+        <Form savePlayerArrayToSate={savePlayerArrayToSate} />
+      ) : (
+        <h2>Tabula</h2>
+      )}
     </ThemeProvider>
   );
 };
