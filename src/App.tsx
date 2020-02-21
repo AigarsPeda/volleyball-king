@@ -11,11 +11,18 @@ const App: React.FC = () => {
 
   const savePlayerArrayToSate = (name: string) => {
     const newPlayer: Player = {
-      id: 1,
+      id: Math.floor(Math.random() * Math.floor(5)),
       name: name,
       smallPoints: 0,
       bigPoints: 0
     };
+
+    const arrayOfId = playerArray.map(player => player.id);
+
+    do {
+      newPlayer.id = Math.floor(Math.random() * Math.floor(5));
+    } while (arrayOfId.includes(newPlayer.id));
+
     setPlayerArray([...playerArray, newPlayer]);
   };
 
