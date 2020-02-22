@@ -29,13 +29,15 @@ const App: React.FC = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      {console.log(playerArray)}
-      {playerArray?.length < NUMBER_OF_PLAYERS ? (
-        <Form savePlayerArrayToSate={savePlayerArrayToSate} />
-      ) : (
-        <h2>Tabula</h2>
-      )}
-      <Game />
+      <div style={{ padding: "5px" }}>
+        {console.log(playerArray)}
+        {playerArray?.length < NUMBER_OF_PLAYERS ? (
+          <Form savePlayerArrayToSate={savePlayerArrayToSate} />
+        ) : (
+          <h2>Tabula</h2>
+        )}
+        <Game playerArray={playerArray} />
+      </div>
     </ThemeProvider>
   );
 };

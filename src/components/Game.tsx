@@ -1,6 +1,8 @@
 import React from "react";
 import MaskedInput from "react-text-mask";
 
+import Player from "./Player";
+
 import {
   Grid,
   Paper,
@@ -9,6 +11,10 @@ import {
   Theme,
   Input
 } from "@material-ui/core";
+
+interface IGame {
+  playerArray: Player[];
+}
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -37,7 +43,8 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const Game: React.FC = () => {
+const Game: React.FC<IGame> = props => {
+  const { playerArray } = props;
   const classes = useStyles();
 
   const TextMaskCustom = (props: any) => {
@@ -48,30 +55,9 @@ const Game: React.FC = () => {
 
   return (
     <div className={classes.root}>
-      <Grid container spacing={1} justify="center" direction="row">
-        <Grid item xs={6}>
-          <Grid container direction="column">
-            <Grid item>
-              <Paper className={classes.paper}>Aigars</Paper>
-            </Grid>
-            <Grid item>
-              <Paper className={classes.paper}>Oskars</Paper>
-            </Grid>
-          </Grid>
-        </Grid>
-
-        <Grid item xs={6}>
-          <Grid container direction="column">
-            <Grid item>
-              <Paper className={classes.paper}>Pēteris</Paper>
-            </Grid>
-            <Grid item>
-              <Paper className={classes.paper}>Jānis</Paper>
-            </Grid>
-          </Grid>
-        </Grid>
+      <Grid container justify="center" spacing={2}>
         <Grid item>
-          <Paper>
+          <Paper style={{ marginTop: "15px" }}>
             <Input
               className={classes.textField}
               //value={values.textmask}
@@ -89,6 +75,13 @@ const Game: React.FC = () => {
             />
           </Paper>
         </Grid>
+      </Grid>
+      <Grid container spacing={2} justify="center" direction="row">
+        {playerArray.map(player => {
+          return <Player key={player.id} player={player} />;
+        })}
+
+        {/* <Player /> */}
       </Grid>
     </div>
   );
