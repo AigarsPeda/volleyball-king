@@ -27,11 +27,12 @@ const useStyles = makeStyles((theme: Theme) =>
     maskedInput: {
       height: "50px",
       fontSize: "35px",
-      width: "55px"
+      width: "55px",
+      textAlign: "center"
     },
     dots: {
-      fontWeight: "bold",
-      fontSize: "20px"
+      //fontWeight: "bold",
+      fontSize: "35px"
     }
   })
 );
