@@ -1,4 +1,5 @@
 import React from "react";
+import MaskedInput from "react-text-mask";
 
 import {
   Grid,
@@ -6,7 +7,8 @@ import {
   makeStyles,
   createStyles,
   Theme,
-  TextField
+  TextField,
+  Input
 } from "@material-ui/core";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -30,6 +32,11 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const Game: React.FC = () => {
   const classes = useStyles();
+
+  const TextMaskCustom = (props: any) => {
+    return <MaskedInput mask={[/[0-9]/, /\d/]} />;
+  };
+
   return (
     <div className={classes.root}>
       <Grid container spacing={1} justify="center" direction="row">
@@ -56,15 +63,19 @@ const Game: React.FC = () => {
         </Grid>
         <Grid item>
           <Paper>
-            <TextField
+            <Input
               className={classes.textField}
-              label="Rezūltāts"
-              variant="outlined"
+              //value={values.textmask}
+              //onChange={handleChange("textmask")}
+              id="formatted-text-mask-input"
+              inputComponent={TextMaskCustom as any}
             />
-            <TextField
+            <Input
               className={classes.textField}
-              label="Rezūltāts"
-              variant="outlined"
+              //value={values.textmask}
+              //onChange={handleChange("textmask")}
+              id="formatted-text-mask-input-2"
+              inputComponent={TextMaskCustom as any}
             />
           </Paper>
         </Grid>
