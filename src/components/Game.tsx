@@ -7,7 +7,6 @@ import {
   makeStyles,
   createStyles,
   Theme,
-  TextField,
   Input
 } from "@material-ui/core";
 
@@ -23,9 +22,16 @@ const useStyles = makeStyles((theme: Theme) =>
       marginTop: "10px"
     },
     textField: {
-      width: "100px",
       margin: "5px"
-      //border: "1px solid #e82e3a"
+    },
+    maskedInput: {
+      height: "50px",
+      fontSize: "35px",
+      width: "55px"
+    },
+    dots: {
+      fontWeight: "bold",
+      fontSize: "20px"
     }
   })
 );
@@ -34,7 +40,9 @@ const Game: React.FC = () => {
   const classes = useStyles();
 
   const TextMaskCustom = (props: any) => {
-    return <MaskedInput mask={[/[0-9]/, /\d/]} />;
+    return (
+      <MaskedInput mask={[/[0-9]/, /\d/]} className={classes.maskedInput} />
+    );
   };
 
   return (
@@ -70,6 +78,7 @@ const Game: React.FC = () => {
               id="formatted-text-mask-input"
               inputComponent={TextMaskCustom as any}
             />
+            <span className={classes.dots}>:</span>
             <Input
               className={classes.textField}
               //value={values.textmask}
