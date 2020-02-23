@@ -27,15 +27,8 @@ const Player: React.FC<IPlayer> = props => {
   const { player } = props;
   const classes = useStyles();
   return (
-    <Grid item xs={6}>
-      <Grid container direction="column">
-        <Grid item>
-          <Paper className={classes.paper}>{player.name}</Paper>
-        </Grid>
-        {/* <Grid item>
-          <Paper className={classes.paper}>{player.name}</Paper>
-        </Grid> */}
-      </Grid>
+    <Grid container direction="column">
+      <Paper className={classes.paper}>{player.name}</Paper>
     </Grid>
   );
 };

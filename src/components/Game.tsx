@@ -16,8 +16,8 @@ interface IGame {
 }
 
 interface State {
-  teamA: string;
-  teamB: string;
+  teamAScore: string;
+  teamBScore: string;
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -50,11 +50,14 @@ const Game: React.FC<IGame> = props => {
   const { playerArray } = props;
   const [gameNumber, setGameNumber] = useState(1);
   const [score, setTeamScore] = useState<State>({
-    teamA: " ",
-    teamB: " "
+    teamAScore: "",
+    teamBScore: ""
   });
 
   const classes = useStyles();
+
+  const teamA: Player[] = [];
+  const teamB: Player[] = [];
 
   //1
   //12 - 34 - 5
@@ -62,6 +65,21 @@ const Game: React.FC<IGame> = props => {
   //JA STATE IR 1 SPĒLE
   //TAD PIE PIEVIENO 1 UN 2 SARAKSTĀ A-KOMANDA
   //JA 3 - 4 TAD B-KOMANDA
+
+  playerArray.forEach(player => {
+    switch (gameNumber) {
+      case 1:
+        if (player.id === 0 || player.id === 1) {
+          teamA.push(player);
+        } else if (player.id === 2 || player.id === 3) {
+          teamB.push(player);
+        }
+        break;
+
+      default:
+        break;
+    }
+  });
 
   // const TextMaskCustom = (props: any) => {
   //   const { inputRef, ...other } = props;
@@ -91,8 +109,8 @@ const Game: React.FC<IGame> = props => {
   // const gamesOrder = (player: Player) => {
   //   return;
   // };
-  console.log("A: ", score.teamA);
-  console.log("B: ", score.teamB);
+  console.log("A: ", teamA);
+  console.log("B: ", teamB);
 
   return (
     <div className={classes.root}>
@@ -101,16 +119,16 @@ const Game: React.FC<IGame> = props => {
           <Paper style={{ marginTop: "15px" }}>
             <Input
               className={classes.textField}
-              value={score.teamA}
-              onChange={handleChange("teamA")}
+              value={score.teamAScore}
+              onChange={handleChange("teamAScore")}
               id="formatted-text-mask-input"
               //inputComponent={TextMaskCustom as any}
             />
             <span className={classes.dots}>:</span>
             <Input
               className={classes.textField}
-              value={score.teamB}
-              onChange={handleChange("teamB")}
+              value={score.teamBScore}
+              onChange={handleChange("teamBScore")}
               id="formatted-text-mask-input-2"
               //inputComponent={TextMaskCustom as any}
             />
@@ -118,33 +136,16 @@ const Game: React.FC<IGame> = props => {
         </Grid>
       </Grid>
       <Grid container spacing={2} justify="center" direction="row">
-        {/* {playerArray.map(player => {
-          return <Player key={player.id} player={player} />;
-        })} */}
-
-        {playerArray.map(player => {
-          switch (gameNumber) {
-            case 1:
-              if (player.id === 0 || player.id === 1) {
-                return <Player key={player.id} player={player} />;
-              } else if (player.id === 2 || player.id === 3) {
-                return <Player key={player.id} player={player} />;
-              }
-
-              break;
-            case 2:
-              if (player.id === 2) {
-                return <Player key={player.id} player={player} />;
-              }
-              break;
-
-            default:
-              return console.log("BEIGAS");
-          }
-          return console.log("YES");
-        })}
-
-        {/* <Player /> */}
+        <Grid item xs={6}>
+          {teamA.map(a => {
+            return <Player key={a.id} player={a} />;
+          })}
+        </Grid>
+        <Grid item xs={6}>
+          {teamB.map(b => {
+            return <Player key={b.id} player={b} />;
+          })}
+        </Grid>
       </Grid>
     </div>
   );
