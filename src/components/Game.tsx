@@ -1,5 +1,4 @@
-import React from "react";
-import MaskedInput from "react-text-mask";
+import React, { useState } from "react";
 
 import Player from "./Player";
 
@@ -14,6 +13,11 @@ import {
 
 interface IGame {
   playerArray: Player[];
+}
+
+interface State {
+  teamA: string;
+  teamB: string;
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -37,7 +41,6 @@ const useStyles = makeStyles((theme: Theme) =>
       textAlign: "center"
     },
     dots: {
-      //fontWeight: "bold",
       fontSize: "35px"
     }
   })
@@ -45,13 +48,51 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const Game: React.FC<IGame> = props => {
   const { playerArray } = props;
+  const [gameNumber, setGameNumber] = useState(1);
+  const [score, setTeamScore] = useState<State>({
+    teamA: " ",
+    teamB: " "
+  });
+
   const classes = useStyles();
 
-  const TextMaskCustom = (props: any) => {
-    return (
-      <MaskedInput mask={[/[0-9]/, /\d/]} className={classes.maskedInput} />
-    );
+  //1
+  //12 - 34 - 5
+
+  //JA STATE IR 1 SPĒLE
+  //TAD PIE PIEVIENO 1 UN 2 SARAKSTĀ A-KOMANDA
+  //JA 3 - 4 TAD B-KOMANDA
+
+  // const TextMaskCustom = (props: any) => {
+  //   const { inputRef, ...other } = props;
+  //   return (
+  //     <NumberFormat
+  //       {...other}
+  //       ref={(ref: any) => {
+  //         inputRef(ref ? ref.inputElement : null);
+  //       }}
+  //       //value={2456981}
+  //       // mask={[/[0-9]/, /\d/]}
+  //       // showMask
+  //       className={classes.maskedInput}
+  //     />
+  //   );
+  // };
+
+  const handleChange = (name: keyof State) => (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setTeamScore({
+      ...score,
+      [name]: event.target.value
+    });
   };
+
+  // const gamesOrder = (player: Player) => {
+  //   return;
+  // };
+  console.log("A: ", score.teamA);
+  console.log("B: ", score.teamB);
 
   return (
     <div className={classes.root}>
@@ -60,25 +101,47 @@ const Game: React.FC<IGame> = props => {
           <Paper style={{ marginTop: "15px" }}>
             <Input
               className={classes.textField}
-              //value={values.textmask}
-              //onChange={handleChange("textmask")}
+              value={score.teamA}
+              onChange={handleChange("teamA")}
               id="formatted-text-mask-input"
-              inputComponent={TextMaskCustom as any}
+              //inputComponent={TextMaskCustom as any}
             />
             <span className={classes.dots}>:</span>
             <Input
               className={classes.textField}
-              //value={values.textmask}
-              //onChange={handleChange("textmask")}
+              value={score.teamB}
+              onChange={handleChange("teamB")}
               id="formatted-text-mask-input-2"
-              inputComponent={TextMaskCustom as any}
+              //inputComponent={TextMaskCustom as any}
             />
           </Paper>
         </Grid>
       </Grid>
       <Grid container spacing={2} justify="center" direction="row">
-        {playerArray.map(player => {
+        {/* {playerArray.map(player => {
           return <Player key={player.id} player={player} />;
+        })} */}
+
+        {playerArray.map(player => {
+          switch (gameNumber) {
+            case 1:
+              if (player.id === 0 || player.id === 1) {
+                return <Player key={player.id} player={player} />;
+              } else if (player.id === 2 || player.id === 3) {
+                return <Player key={player.id} player={player} />;
+              }
+
+              break;
+            case 2:
+              if (player.id === 2) {
+                return <Player key={player.id} player={player} />;
+              }
+              break;
+
+            default:
+              return console.log("BEIGAS");
+          }
+          return console.log("YES");
         })}
 
         {/* <Player /> */}
