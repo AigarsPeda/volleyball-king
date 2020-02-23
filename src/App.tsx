@@ -36,7 +36,7 @@ const App: React.FC = () => {
         ) : (
           <h2>Tabula</h2>
         )}
-        <Game playerArray={playerArray} />
+        <Game playerArray={playerArray} setPlayerArray={setPlayerArray} />
       </div>
     </ThemeProvider>
   );

@@ -14,6 +14,7 @@ import {
 
 interface IGame {
   playerArray: Player[];
+  setPlayerArray: React.Dispatch<React.SetStateAction<Player[]>>;
 }
 
 interface State {
@@ -48,7 +49,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 const Game: React.FC<IGame> = props => {
-  const { playerArray } = props;
+  const { playerArray, setPlayerArray } = props;
   const [gameNumber, setGameNumber] = useState(1);
   const [score, setTeamScore] = useState<State>({
     teamAScore: "",
@@ -59,6 +60,15 @@ const Game: React.FC<IGame> = props => {
 
   const teamA: Player[] = [];
   const teamB: Player[] = [];
+
+  const findWinner = () => {
+    if (parseInt(score.teamAScore) > parseInt(score.teamBScore)) {
+      const [playerOne, playerTwo] = teamA;
+      console.log("ONE: ", playerOne);
+      console.log("REST: ", playerTwo);
+    }
+    setGameNumber(prev => prev + 1);
+  };
 
   //1
   //12 - 34 - 5
@@ -80,6 +90,98 @@ const Game: React.FC<IGame> = props => {
         if (player.id === 0 || player.id === 2) {
           teamA.push(player);
         } else if (player.id === 1 || player.id === 4) {
+          teamB.push(player);
+        }
+        break;
+      case 3:
+        if (player.id === 0 || player.id === 4) {
+          teamA.push(player);
+        } else if (player.id === 1 || player.id === 3) {
+          teamB.push(player);
+        }
+        break;
+      case 4:
+        if (player.id === 0 || player.id === 3) {
+          teamA.push(player);
+        } else if (player.id === 2 || player.id === 4) {
+          teamB.push(player);
+        }
+        break;
+      case 5:
+        if (player.id === 1 || player.id === 2) {
+          teamA.push(player);
+        } else if (player.id === 3 || player.id === 4) {
+          teamB.push(player);
+        }
+        break;
+      case 6:
+        if (player.id === 0 || player.id === 2) {
+          teamA.push(player);
+        } else if (player.id === 1 || player.id === 3) {
+          teamB.push(player);
+        }
+        break;
+      case 7:
+        if (player.id === 0 || player.id === 1) {
+          teamA.push(player);
+        } else if (player.id === 2 || player.id === 4) {
+          teamB.push(player);
+        }
+        break;
+      case 8:
+        if (player.id === 0 || player.id === 3) {
+          teamA.push(player);
+        } else if (player.id === 1 || player.id === 4) {
+          teamB.push(player);
+        }
+        break;
+      case 9:
+        if (player.id === 0 || player.id === 4) {
+          teamA.push(player);
+        } else if (player.id === 2 || player.id === 3) {
+          teamB.push(player);
+        }
+        break;
+      case 10:
+        if (player.id === 1 || player.id === 3) {
+          teamA.push(player);
+        } else if (player.id === 2 || player.id === 4) {
+          teamB.push(player);
+        }
+        break;
+      case 11:
+        if (player.id === 0 || player.id === 3) {
+          teamA.push(player);
+        } else if (player.id === 1 || player.id === 2) {
+          teamB.push(player);
+        }
+        break;
+
+      case 12:
+        if (player.id === 0 || player.id === 4) {
+          teamA.push(player);
+        } else if (player.id === 1 || player.id === 2) {
+          teamB.push(player);
+        }
+        break;
+      case 13:
+        if (player.id === 0 || player.id === 1) {
+          teamA.push(player);
+        } else if (player.id === 3 || player.id === 4) {
+          teamB.push(player);
+        }
+        break;
+      case 14:
+        if (player.id === 0 || player.id === 2) {
+          teamA.push(player);
+        } else if (player.id === 3 || player.id === 4) {
+          teamB.push(player);
+        }
+        break;
+      case 15:
+        if (player.id === 1 || player.id === 4) {
+          teamA.push(player);
+        } else if (player.id === 2 || player.id === 3) {
           teamB.push(player);
         }
         break;
@@ -155,7 +257,7 @@ const Game: React.FC<IGame> = props => {
           })}
         </Grid>
       </Grid>
-      <Button onClick={() => setGameNumber(prev => prev + 1)}>Next Game</Button>
+      <Button onClick={findWinner}>Next Game</Button>
     </div>
   );
 };
