@@ -8,7 +8,8 @@ import {
   makeStyles,
   createStyles,
   Theme,
-  Input
+  Input,
+  Button
 } from "@material-ui/core";
 
 interface IGame {
@@ -72,6 +73,13 @@ const Game: React.FC<IGame> = props => {
         if (player.id === 0 || player.id === 1) {
           teamA.push(player);
         } else if (player.id === 2 || player.id === 3) {
+          teamB.push(player);
+        }
+        break;
+      case 2:
+        if (player.id === 0 || player.id === 2) {
+          teamA.push(player);
+        } else if (player.id === 1 || player.id === 4) {
           teamB.push(player);
         }
         break;
@@ -147,6 +155,7 @@ const Game: React.FC<IGame> = props => {
           })}
         </Grid>
       </Grid>
+      <Button onClick={() => setGameNumber(prev => prev + 1)}>Next Game</Button>
     </div>
   );
 };
