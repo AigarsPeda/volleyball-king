@@ -13,7 +13,7 @@ const App: React.FC = () => {
   const savePlayerArrayToSate = (name: string) => {
     const newPlayer: Player = {
       id: Math.floor(Math.random() * Math.floor(5)),
-      name: name,
+      name: name.trim(),
       smallPoints: 0,
       bigPoints: 0
     };

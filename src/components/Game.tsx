@@ -48,6 +48,12 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     dots: {
       fontSize: "35px"
+    },
+    button: {
+      //margin: "auto",
+      marginTop: "10px",
+      width: "100%",
+      height: "50px"
     }
   })
 );
@@ -235,18 +241,29 @@ const Game: React.FC<IGame> = props => {
         </Grid>
       </Grid>
       <Grid container spacing={2} justify="center" direction="row">
-        <Grid item xs={6}>
+        <Grid item lg={4} xs={6}>
           {teamA.map(a => {
             return <Player key={a.id} player={a} />;
           })}
         </Grid>
-        <Grid item xs={6}>
+        <Grid item lg={4} xs={6}>
           {teamB.map(b => {
             return <Player key={b.id} player={b} />;
           })}
         </Grid>
+        <Grid container justify="center">
+          <Grid item xs={3}>
+            <Button
+              onClick={findWinner}
+              variant="contained"
+              color="primary"
+              className={classes.button}
+            >
+              Nākamā spēle
+            </Button>
+          </Grid>
+        </Grid>
       </Grid>
-      <Button onClick={findWinner}>Next Game</Button>
     </div>
   );
 };

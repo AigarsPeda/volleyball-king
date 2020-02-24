@@ -14,6 +14,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginTop: "10px",
     width: "100%",
     height: "50px"
+  },
+  textField: {
+    color: "#ffffff"
   }
 }));
 
@@ -42,6 +45,9 @@ const Form: React.FC<IForm> = props => {
           value={name}
           onChange={e => setName(e.target.value)}
           margin="normal"
+          InputProps={{
+            className: classes.textField
+          }}
         />
         <Button
           variant="contained"

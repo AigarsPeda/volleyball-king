@@ -17,8 +17,10 @@ const useStyles = makeStyles((theme: Theme) =>
     paper: {
       padding: theme.spacing(2),
       textAlign: "center",
-      color: theme.palette.text.secondary,
-      marginTop: "10px"
+      //color: theme.palette.text.secondary,
+      marginTop: "10px",
+      backgroundColor: "#5d6d84",
+      color: "#ffffff"
     }
   })
 );
