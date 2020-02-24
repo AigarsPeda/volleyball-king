@@ -51,10 +51,12 @@ const useStyles = makeStyles((theme: Theme) =>
 const Game: React.FC<IGame> = props => {
   const { playerArray, setPlayerArray } = props;
   const [gameNumber, setGameNumber] = useState(1);
-  const [score, setTeamScore] = useState<State>({
-    teamAScore: "",
-    teamBScore: ""
-  });
+  const [teamAScore, setTeamAScore] = useState("");
+  const [teamBScore, setTeamBScore] = useState("");
+  // const [score, setTeamScore] = useState<State>({
+  //   teamAScore: "",
+  //   teamBScore: ""
+  // });
 
   const classes = useStyles();
 
@@ -62,20 +64,36 @@ const Game: React.FC<IGame> = props => {
   const teamB: Player[] = [];
 
   const findWinner = () => {
-    if (parseInt(score.teamAScore) > parseInt(score.teamBScore)) {
+    if (parseInt(teamAScore) > parseInt(teamBScore)) {
       const [playerOne, playerTwo] = teamA;
       const newPlayerArray = playerArray.map(player => {
         if (player.id === playerOne.id || player.id === playerTwo.id) {
           return {
             ...player,
             bigPoints: player.bigPoints + 1,
-            smallPoints: player.smallPoints + parseInt(score.teamAScore)
+            smallPoints: player.smallPoints + parseInt(teamAScore)
           };
         }
         return player;
       });
       setPlayerArray(newPlayerArray);
     }
+    if (parseInt(teamAScore) < parseInt(teamBScore)) {
+      const [playerOne, playerTwo] = teamB;
+      const newPlayerArray = playerArray.map(player => {
+        if (player.id === playerOne.id || player.id === playerTwo.id) {
+          return {
+            ...player,
+            bigPoints: player.bigPoints + 1,
+            smallPoints: player.smallPoints + parseInt(teamBScore)
+          };
+        }
+        return player;
+      });
+      setPlayerArray(newPlayerArray);
+    }
+    setTeamAScore("");
+    setTeamBScore("");
     setGameNumber(prev => prev + 1);
   };
 
@@ -216,14 +234,14 @@ const Game: React.FC<IGame> = props => {
   //   );
   // };
 
-  const handleChange = (name: keyof State) => (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setTeamScore({
-      ...score,
-      [name]: event.target.value
-    });
-  };
+  // const handleChange = (name: keyof State) => (
+  //   event: React.ChangeEvent<HTMLInputElement>
+  // ) => {
+  //   setTeamScore({
+  //     ...score,
+  //     [name]: event.target.value
+  //   });
+  // };
 
   // const gamesOrder = (player: Player) => {
   //   return;
@@ -238,16 +256,16 @@ const Game: React.FC<IGame> = props => {
           <Paper style={{ marginTop: "15px" }}>
             <Input
               className={classes.textField}
-              value={score.teamAScore}
-              onChange={handleChange("teamAScore")}
+              value={teamAScore}
+              onChange={e => setTeamAScore(e.target.value)}
               id="formatted-text-mask-input"
               //inputComponent={TextMaskCustom as any}
             />
             <span className={classes.dots}>:</span>
             <Input
               className={classes.textField}
-              value={score.teamBScore}
-              onChange={handleChange("teamBScore")}
+              value={teamBScore}
+              onChange={e => setTeamBScore(e.target.value)}
               id="formatted-text-mask-input-2"
               //inputComponent={TextMaskCustom as any}
             />
