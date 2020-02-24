@@ -1,16 +1,16 @@
 import { createMuiTheme, Theme } from "@material-ui/core/styles";
 
-// const blue = "#6580be";
-// const green = "#1bc690";
+const orange = "#f86a28";
+const gray = "#5d6d84";
 
 const theme: Theme = createMuiTheme({
   palette: {
-    // primary: {
-    //   main: `${blue}`
-    // },
-    // secondary: {
-    //   main: `${green}`
-    // }
+    primary: {
+      main: `${orange}`
+    },
+    secondary: {
+      main: `${gray}`
+    }
   },
   typography: {
     //fontFamily: "Open Sans, Helvetica",

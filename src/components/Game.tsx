@@ -34,7 +34,11 @@ const useStyles = makeStyles((theme: Theme) =>
       marginTop: "10px"
     },
     textField: {
-      margin: "5px"
+      margin: "5px",
+      width: "75px",
+      height: "80px",
+      fontSize: "45px",
+      textAlign: "center"
     },
     maskedInput: {
       height: "50px",
@@ -53,10 +57,6 @@ const Game: React.FC<IGame> = props => {
   const [gameNumber, setGameNumber] = useState(1);
   const [teamAScore, setTeamAScore] = useState("");
   const [teamBScore, setTeamBScore] = useState("");
-  // const [score, setTeamScore] = useState<State>({
-  //   teamAScore: "",
-  //   teamBScore: ""
-  // });
 
   const classes = useStyles();
 
@@ -96,13 +96,6 @@ const Game: React.FC<IGame> = props => {
     setTeamBScore("");
     setGameNumber(prev => prev + 1);
   };
-
-  //1
-  //12 - 34 - 5
-
-  //JA STATE IR 1 SPĒLE
-  //TAD PIE PIEVIENO 1 UN 2 SARAKSTĀ A-KOMANDA
-  //JA 3 - 4 TAD B-KOMANDA
 
   playerArray.forEach(player => {
     switch (gameNumber) {
@@ -218,37 +211,6 @@ const Game: React.FC<IGame> = props => {
     }
   });
 
-  // const TextMaskCustom = (props: any) => {
-  //   const { inputRef, ...other } = props;
-  //   return (
-  //     <NumberFormat
-  //       {...other}
-  //       ref={(ref: any) => {
-  //         inputRef(ref ? ref.inputElement : null);
-  //       }}
-  //       //value={2456981}
-  //       // mask={[/[0-9]/, /\d/]}
-  //       // showMask
-  //       className={classes.maskedInput}
-  //     />
-  //   );
-  // };
-
-  // const handleChange = (name: keyof State) => (
-  //   event: React.ChangeEvent<HTMLInputElement>
-  // ) => {
-  //   setTeamScore({
-  //     ...score,
-  //     [name]: event.target.value
-  //   });
-  // };
-
-  // const gamesOrder = (player: Player) => {
-  //   return;
-  // };
-  console.log("A: ", teamA);
-  console.log("B: ", teamB);
-
   return (
     <div className={classes.root}>
       <Grid container justify="center" spacing={2}>
@@ -259,7 +221,7 @@ const Game: React.FC<IGame> = props => {
               value={teamAScore}
               onChange={e => setTeamAScore(e.target.value)}
               id="formatted-text-mask-input"
-              //inputComponent={TextMaskCustom as any}
+              type="number"
             />
             <span className={classes.dots}>:</span>
             <Input
@@ -267,7 +229,7 @@ const Game: React.FC<IGame> = props => {
               value={teamBScore}
               onChange={e => setTeamBScore(e.target.value)}
               id="formatted-text-mask-input-2"
-              //inputComponent={TextMaskCustom as any}
+              type="number"
             />
           </Paper>
         </Grid>

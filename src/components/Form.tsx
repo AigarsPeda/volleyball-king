@@ -12,7 +12,8 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   button: {
     marginTop: "10px",
-    width: "100%"
+    width: "100%",
+    height: "50px"
   }
 }));
 
