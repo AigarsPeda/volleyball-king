@@ -64,8 +64,17 @@ const Game: React.FC<IGame> = props => {
   const findWinner = () => {
     if (parseInt(score.teamAScore) > parseInt(score.teamBScore)) {
       const [playerOne, playerTwo] = teamA;
-      console.log("ONE: ", playerOne);
-      console.log("REST: ", playerTwo);
+      const newPlayerArray = playerArray.map(player => {
+        if (player.id === playerOne.id || player.id === playerTwo.id) {
+          return {
+            ...player,
+            bigPoints: player.bigPoints + 1,
+            smallPoints: player.smallPoints + parseInt(score.teamAScore)
+          };
+        }
+        return player;
+      });
+      setPlayerArray(newPlayerArray);
     }
     setGameNumber(prev => prev + 1);
   };
