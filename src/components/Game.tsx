@@ -8,8 +8,8 @@ import {
   makeStyles,
   createStyles,
   Theme,
-  Input,
-  Button
+  Button,
+  TextField
 } from "@material-ui/core";
 
 interface IGame {
@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme: Theme) =>
     textField: {
       margin: "5px",
       width: "75px",
-      height: "80px",
+
       fontSize: "45px",
       textAlign: "center"
     },
@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme: Theme) =>
       textAlign: "center"
     },
     dots: {
-      fontSize: "35px"
+      fontSize: "45px"
     },
     button: {
       //margin: "auto",
@@ -101,6 +101,10 @@ const Game: React.FC<IGame> = props => {
     setTeamAScore("");
     setTeamBScore("");
     setGameNumber(prev => prev + 1);
+  };
+
+  const allowOnlyNumbersInInput = (e: any) => {
+    e.target.value = e.target.value.replace(/[^0-9]/g, "");
   };
 
   playerArray.forEach(player => {
@@ -222,20 +226,28 @@ const Game: React.FC<IGame> = props => {
       <Grid container justify="center" spacing={2}>
         <Grid item>
           <Paper style={{ marginTop: "15px" }}>
-            <Input
+            <TextField
               className={classes.textField}
               value={teamAScore}
               onChange={e => setTeamAScore(e.target.value)}
-              id="formatted-text-mask-input"
-              type="number"
+              variant="outlined"
+              type="text"
+              inputProps={{
+                maxLength: 2
+              }}
+              onInput={e => allowOnlyNumbersInInput(e)}
             />
             <span className={classes.dots}>:</span>
-            <Input
+            <TextField
               className={classes.textField}
               value={teamBScore}
+              variant="outlined"
               onChange={e => setTeamBScore(e.target.value)}
-              id="formatted-text-mask-input-2"
-              type="number"
+              type="text"
+              inputProps={{
+                maxLength: 2
+              }}
+              onInput={e => allowOnlyNumbersInInput(e)}
             />
           </Paper>
         </Grid>
