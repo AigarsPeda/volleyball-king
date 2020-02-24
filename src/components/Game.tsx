@@ -33,10 +33,14 @@ const useStyles = makeStyles((theme: Theme) =>
       color: theme.palette.text.secondary,
       marginTop: "10px"
     },
+    borderRadius: {
+      fontSize: 32,
+      color: "#fff",
+      padding: "10px"
+    },
     textField: {
       margin: "5px",
       width: "75px",
-
       fontSize: "45px",
       textAlign: "center"
     },
@@ -50,10 +54,13 @@ const useStyles = makeStyles((theme: Theme) =>
       fontSize: "45px"
     },
     button: {
-      //margin: "auto",
+      backgroundClip: "rgb(248,106,40)",
+      background:
+        "linear-gradient(90deg, rgba(248,106,40,1) 0%, rgba(232,48,58,1) 100%)",
       marginTop: "10px",
       width: "100%",
-      height: "50px"
+      height: "50px",
+      color: "#fff"
     }
   })
 );
@@ -225,7 +232,13 @@ const Game: React.FC<IGame> = props => {
     <div className={classes.root}>
       <Grid container justify="center" spacing={2}>
         <Grid item>
-          <Paper style={{ marginTop: "15px" }}>
+          <Paper
+            style={{
+              marginTop: "15px",
+              background:
+                "linear-gradient(90deg, rgba(248,106,40,1) 0%, rgba(232,48,58,1) 100%)"
+            }}
+          >
             <TextField
               className={classes.textField}
               value={teamAScore}
@@ -233,7 +246,9 @@ const Game: React.FC<IGame> = props => {
               variant="outlined"
               type="text"
               inputProps={{
-                maxLength: 2
+                maxLength: 2,
+                className: classes.borderRadius,
+                style: { textAlign: "center" }
               }}
               onInput={e => allowOnlyNumbersInInput(e)}
             />
@@ -245,7 +260,9 @@ const Game: React.FC<IGame> = props => {
               onChange={e => setTeamBScore(e.target.value)}
               type="text"
               inputProps={{
-                maxLength: 2
+                maxLength: 2,
+                className: classes.borderRadius,
+                style: { textAlign: "center" }
               }}
               onInput={e => allowOnlyNumbersInInput(e)}
             />
@@ -264,7 +281,7 @@ const Game: React.FC<IGame> = props => {
           })}
         </Grid>
         <Grid container justify="center">
-          <Grid item xs={3}>
+          <Grid item lg={3} xs={10}>
             <Button
               onClick={findWinner}
               variant="contained"

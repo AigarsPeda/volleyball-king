@@ -17,9 +17,10 @@ const useStyles = makeStyles((theme: Theme) =>
     paper: {
       padding: theme.spacing(2),
       textAlign: "center",
-      //color: theme.palette.text.secondary,
+      background:
+        "linear-gradient(180deg, rgba(46,46,60,1) 0%, rgba(42,42,54,1) 100%)",
       marginTop: "10px",
-      backgroundColor: "#5d6d84",
+      backgroundColor: "#22222a",
       color: "#ffffff"
     }
   })

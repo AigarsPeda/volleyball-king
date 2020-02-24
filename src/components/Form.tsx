@@ -13,7 +13,11 @@ const useStyles = makeStyles((theme: Theme) => ({
   button: {
     marginTop: "10px",
     width: "100%",
-    height: "50px"
+    height: "50px",
+    backgroundClip: "#rgb(248,106,40)",
+    background:
+      "linear-gradient(90deg, rgba(248,106,40,1) 0%, rgba(232,48,58,1) 100%)",
+    color: "#fff"
   },
   textField: {
     color: "#ffffff"
