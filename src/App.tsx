@@ -81,7 +81,10 @@ const App: React.FC = () => {
             <div style={{ position: "absolute", top: 15, right: 15 }}>
               <Button
                 color="primary"
-                onClick={removePlayerArrayFromLocalStorage}
+                onClick={() => {
+                  if (window.confirm("Vai tiešām sākt jaunu turnīru?"))
+                    removePlayerArrayFromLocalStorage();
+                }}
               >
                 JAUNS TURNĪRS
               </Button>
