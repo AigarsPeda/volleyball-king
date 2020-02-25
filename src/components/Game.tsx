@@ -83,6 +83,9 @@ const Game: React.FC<IGame> = props => {
     if (teamAScore.length === 0 || teamBScore.length === 0) {
       return;
     }
+    if (teamAScore === teamBScore) {
+      return;
+    }
     if (parseInt(teamAScore) > parseInt(teamBScore)) {
       const [playerOne, playerTwo] = teamA;
       const newPlayerArray = playerArray.map(player => {
