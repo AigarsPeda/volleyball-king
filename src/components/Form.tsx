@@ -29,10 +29,10 @@ interface IForm {
 }
 
 const Form: React.FC<IForm> = props => {
-  const [name, setName] = useState<string>("");
-
-  const classes = useStyles();
   const { savePlayerArrayToSate } = props;
+
+  const [name, setName] = useState<string>("");
+  const classes = useStyles();
 
   const makeArrayOfPlayers = (e: React.FormEvent) => {
     e.preventDefault();

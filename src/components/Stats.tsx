@@ -14,11 +14,6 @@ import {
   TableBody
 } from "@material-ui/core";
 
-interface IStats {
-  sorterPlayerArray: Player[];
-  setSortingOrder: React.Dispatch<React.SetStateAction<string>>;
-}
-
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     table: {
@@ -29,7 +24,7 @@ const useStyles = makeStyles((theme: Theme) =>
     text: {
       color: "#fff",
       fontWeight: "bolder",
-      letterSpacing: "3px",
+      letterSpacing: "2.5px",
       borderBottom: "none",
       cursor: "pointer"
     },
@@ -41,6 +36,11 @@ const useStyles = makeStyles((theme: Theme) =>
     }
   })
 );
+
+interface IStats {
+  sorterPlayerArray: Player[];
+  setSortingOrder: React.Dispatch<React.SetStateAction<string>>;
+}
 
 const Stats: React.FC<IStats> = props => {
   const { sorterPlayerArray, setSortingOrder } = props;

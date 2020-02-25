@@ -8,10 +8,6 @@ import {
   Theme
 } from "@material-ui/core";
 
-interface IPlayer {
-  player: Player;
-}
-
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     paper: {
@@ -19,7 +15,6 @@ const useStyles = makeStyles((theme: Theme) =>
       textAlign: "center",
       background:
         "linear-gradient(180deg, rgba(46,46,60,1) 0%, rgba(42,42,54,1) 100%)",
-
       backgroundColor: "#22222a",
       color: "#ffffff",
       margin: "8px",
@@ -28,6 +23,10 @@ const useStyles = makeStyles((theme: Theme) =>
     }
   })
 );
+
+interface IPlayer {
+  player: Player;
+}
 
 const Player: React.FC<IPlayer> = props => {
   const { player } = props;

@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-
+import React, { useState } from "react";
 import Player from "./Player";
 
 import {
@@ -11,13 +10,6 @@ import {
   Button,
   TextField
 } from "@material-ui/core";
-
-interface IGame {
-  playerArray: Player[];
-  setPlayerArray: React.Dispatch<React.SetStateAction<Player[]>>;
-  setGameNumber: React.Dispatch<any>;
-  gameNumber: number;
-}
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -70,22 +62,22 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
+interface IGame {
+  playerArray: Player[];
+  setPlayerArray: React.Dispatch<React.SetStateAction<Player[]>>;
+  setGameNumber: React.Dispatch<any>;
+  gameNumber: number;
+}
+
 const Game: React.FC<IGame> = props => {
   const { playerArray, setPlayerArray, setGameNumber, gameNumber } = props;
-  // const [gameNumber, setGameNumber] = useState(() =>
-  //   JSON.parse(localStorage.getItem("gameNumber") || "1")
-  // );
+  const classes = useStyles();
+
   const [teamAScore, setTeamAScore] = useState("");
   const [teamBScore, setTeamBScore] = useState("");
 
-  const classes = useStyles();
-
   const teamA: Player[] = [];
   const teamB: Player[] = [];
-
-  // useEffect(() => {
-  //   localStorage.setItem("gameNumber", JSON.stringify(gameNumber));
-  // }, [gameNumber]);
 
   const findWinner = () => {
     if (teamAScore.length === 0 || teamBScore.length === 0) {

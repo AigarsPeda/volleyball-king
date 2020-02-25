@@ -62,7 +62,6 @@ const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
       <div style={{ padding: "5px" }}>
-        {console.log(playerArray)}
         {playerArray.length < NUMBER_OF_PLAYERS ? (
           <Form savePlayerArrayToSate={savePlayerArrayToSate} />
         ) : (
@@ -74,13 +73,21 @@ const App: React.FC = () => {
           />
         )}
         {playerArray.length ? (
-          <Stats
-            sorterPlayerArray={sorterPlayerArray}
-            setSortingOrder={setSortingOrder}
-          />
+          <>
+            <Stats
+              sorterPlayerArray={sorterPlayerArray}
+              setSortingOrder={setSortingOrder}
+            />
+            <div style={{ position: "absolute", top: 15, right: 15 }}>
+              <Button
+                color="primary"
+                onClick={removePlayerArrayFromLocalStorage}
+              >
+                JAUNS TURNĪRS
+              </Button>
+            </div>
+          </>
         ) : null}
-
-        <Button onClick={removePlayerArrayFromLocalStorage}>REMOVE</Button>
       </div>
     </ThemeProvider>
   );
