@@ -4,6 +4,7 @@ import theme from "./ui/Theme";
 // import { Button } from "@material-ui/core";
 import Form from "./components/Form";
 import Game from "./components/Game";
+import { Button } from "@material-ui/core";
 
 const NUMBER_OF_PLAYERS = 5;
 
@@ -15,6 +16,13 @@ const App: React.FC = () => {
   useEffect(() => {
     localStorage.setItem("playerArray", JSON.stringify(playerArray));
   }, [playerArray]);
+
+  const removePlayerArrayFromLocalStorage = () => {
+    let newPlayerArray = playerArray;
+    newPlayerArray = [];
+    setPlayerArray(newPlayerArray);
+    //localStorage.removeItem("playerArray");
+  };
 
   const savePlayerArrayToSate = (name: string) => {
     const newPlayer: Player = {
@@ -43,6 +51,7 @@ const App: React.FC = () => {
           <Game playerArray={playerArray} setPlayerArray={setPlayerArray} />
         )}
       </div>
+      <Button onClick={removePlayerArrayFromLocalStorage}>REMOVE</Button>
     </ThemeProvider>
   );
 };
