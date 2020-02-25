@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { ThemeProvider } from "@material-ui/core/styles";
 import theme from "./ui/Theme";
-// import { Button } from "@material-ui/core";
+import { Button } from "@material-ui/core";
+
 import Form from "./components/Form";
 import Game from "./components/Game";
 import Stats from "./components/Stats";
-import { Button } from "@material-ui/core";
 
 const NUMBER_OF_PLAYERS = 5;
 
@@ -13,16 +13,23 @@ const App: React.FC = () => {
   const [playerArray, setPlayerArray] = useState<Player[]>(() =>
     JSON.parse(localStorage.getItem("playerArray") || "[]")
   );
+  const [gameNumber, setGameNumber] = useState<number>(() =>
+    JSON.parse(localStorage.getItem("gameNumber") || "1")
+  );
+  const [sortingOrder, setSortingOrder] = useState("bigPoints");
 
   useEffect(() => {
     localStorage.setItem("playerArray", JSON.stringify(playerArray));
-  }, [playerArray]);
+    localStorage.setItem("gameNumber", JSON.stringify(gameNumber));
+  }, [playerArray, gameNumber]);
 
   const removePlayerArrayFromLocalStorage = () => {
     let newPlayerArray = playerArray;
     newPlayerArray = [];
     setPlayerArray(newPlayerArray);
-    //localStorage.removeItem("playerArray");
+    let newGameNumber = gameNumber;
+    newGameNumber = 1;
+    setGameNumber(newGameNumber);
   };
 
   const savePlayerArrayToSate = (name: string) => {
@@ -42,17 +49,37 @@ const App: React.FC = () => {
     setPlayerArray([...playerArray, newPlayer]);
   };
 
+  const sorterPlayerArray = playerArray.sort(function(a, b) {
+    if (sortingOrder === "bigPoints") {
+      return b.bigPoints - a.bigPoints;
+    }
+    if (sortingOrder === "smallPoints") {
+      return b.smallPoints - a.smallPoints;
+    }
+    return b.id - a.id;
+  });
+
   return (
     <ThemeProvider theme={theme}>
       <div style={{ padding: "5px" }}>
         {console.log(playerArray)}
-        {playerArray?.length < NUMBER_OF_PLAYERS ? (
+        {playerArray.length < NUMBER_OF_PLAYERS ? (
           <Form savePlayerArrayToSate={savePlayerArrayToSate} />
         ) : (
-          <Game playerArray={playerArray} setPlayerArray={setPlayerArray} />
+          <Game
+            playerArray={playerArray}
+            setPlayerArray={setPlayerArray}
+            gameNumber={gameNumber}
+            setGameNumber={setGameNumber}
+          />
         )}
+        {playerArray.length ? (
+          <Stats
+            sorterPlayerArray={sorterPlayerArray}
+            setSortingOrder={setSortingOrder}
+          />
+        ) : null}
 
-        <Stats playerArray={playerArray} />
         <Button onClick={removePlayerArrayFromLocalStorage}>REMOVE</Button>
       </div>
     </ThemeProvider>

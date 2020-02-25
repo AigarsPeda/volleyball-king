@@ -15,7 +15,8 @@ import {
 } from "@material-ui/core";
 
 interface IStats {
-  playerArray: Player[];
+  sorterPlayerArray: Player[];
+  setSortingOrder: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -29,7 +30,8 @@ const useStyles = makeStyles((theme: Theme) =>
       color: "#fff",
       fontWeight: "bolder",
       letterSpacing: "3px",
-      borderBottom: "none"
+      borderBottom: "none",
+      cursor: "pointer"
     },
     numbers: {
       color: "#fff",
@@ -41,7 +43,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 const Stats: React.FC<IStats> = props => {
-  const { playerArray } = props;
+  const { sorterPlayerArray, setSortingOrder } = props;
   const classes = useStyles();
   return (
     <Grid container justify="center">
@@ -53,16 +55,24 @@ const Stats: React.FC<IStats> = props => {
           <TableHead>
             <TableRow>
               <TableCell className={classes.text}></TableCell>
-              <TableCell align="right" className={classes.text}>
+              <TableCell
+                align="right"
+                className={classes.text}
+                onClick={() => setSortingOrder("smallPoints")}
+              >
                 Punkti
               </TableCell>
-              <TableCell align="right" className={classes.text}>
+              <TableCell
+                align="right"
+                className={classes.text}
+                onClick={() => setSortingOrder("bigPoints")}
+              >
                 Uzvaras
               </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {playerArray.map(player => (
+            {sorterPlayerArray.map(player => (
               <TableRow key={player.id}>
                 <TableCell component="th" scope="row" className={classes.text}>
                   {player.name}

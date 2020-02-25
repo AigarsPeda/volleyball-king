@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import Player from "./Player";
 
@@ -15,11 +15,8 @@ import {
 interface IGame {
   playerArray: Player[];
   setPlayerArray: React.Dispatch<React.SetStateAction<Player[]>>;
-}
-
-interface State {
-  teamAScore: string;
-  teamBScore: string;
+  setGameNumber: React.Dispatch<any>;
+  gameNumber: number;
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -74,8 +71,10 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 const Game: React.FC<IGame> = props => {
-  const { playerArray, setPlayerArray } = props;
-  const [gameNumber, setGameNumber] = useState(1);
+  const { playerArray, setPlayerArray, setGameNumber, gameNumber } = props;
+  // const [gameNumber, setGameNumber] = useState(() =>
+  //   JSON.parse(localStorage.getItem("gameNumber") || "1")
+  // );
   const [teamAScore, setTeamAScore] = useState("");
   const [teamBScore, setTeamBScore] = useState("");
 
@@ -83,6 +82,10 @@ const Game: React.FC<IGame> = props => {
 
   const teamA: Player[] = [];
   const teamB: Player[] = [];
+
+  // useEffect(() => {
+  //   localStorage.setItem("gameNumber", JSON.stringify(gameNumber));
+  // }, [gameNumber]);
 
   const findWinner = () => {
     if (teamAScore.length === 0 || teamBScore.length === 0) {
@@ -118,7 +121,7 @@ const Game: React.FC<IGame> = props => {
     }
     setTeamAScore("");
     setTeamBScore("");
-    setGameNumber(prev => prev + 1);
+    setGameNumber((prev: number) => prev + 1);
   };
 
   const allowOnlyNumbersInInput = (e: any) => {
@@ -241,6 +244,7 @@ const Game: React.FC<IGame> = props => {
 
   return (
     <div className={classes.root}>
+      {console.log(gameNumber)}
       <Grid container justify="center" spacing={2}>
         <Grid item>
           <Paper
