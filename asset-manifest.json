@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/volleyball-king/static/css/main.e999132f.chunk.css",
-    "main.js": "/volleyball-king/static/js/main.6fcbddc5.chunk.js",
-    "main.js.map": "/volleyball-king/static/js/main.6fcbddc5.chunk.js.map",
+    "main.js": "/volleyball-king/static/js/main.a228ffe3.chunk.js",
+    "main.js.map": "/volleyball-king/static/js/main.a228ffe3.chunk.js.map",
     "runtime-main.js": "/volleyball-king/static/js/runtime-main.6e73ac28.js",
     "runtime-main.js.map": "/volleyball-king/static/js/runtime-main.6e73ac28.js.map",
     "static/js/2.340c2181.chunk.js": "/volleyball-king/static/js/2.340c2181.chunk.js",
     "static/js/2.340c2181.chunk.js.map": "/volleyball-king/static/js/2.340c2181.chunk.js.map",
     "index.html": "/volleyball-king/index.html",
-    "precache-manifest.e18e19ba9634b922175ab007da226eff.js": "/volleyball-king/precache-manifest.e18e19ba9634b922175ab007da226eff.js",
+    "precache-manifest.2176a24069cb8774f75e96d94a011cf4.js": "/volleyball-king/precache-manifest.2176a24069cb8774f75e96d94a011cf4.js",
     "service-worker.js": "/volleyball-king/service-worker.js",
     "static/css/main.e999132f.chunk.css.map": "/volleyball-king/static/css/main.e999132f.chunk.css.map",
     "static/js/2.340c2181.chunk.js.LICENSE.txt": "/volleyball-king/static/js/2.340c2181.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.6e73ac28.js",
     "static/js/2.340c2181.chunk.js",
     "static/css/main.e999132f.chunk.css",
-    "static/js/main.6fcbddc5.chunk.js"
+    "static/js/main.a228ffe3.chunk.js"
   ]
 }
