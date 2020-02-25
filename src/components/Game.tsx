@@ -61,6 +61,14 @@ const useStyles = makeStyles((theme: Theme) =>
       width: "100%",
       height: "50px",
       color: "#fff"
+    },
+    playerPaper: {
+      padding: "1px",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      border: "1px solid rgba(248,106,40,1)",
+      backgroundColor: "transparent"
     }
   })
 );
@@ -271,15 +279,21 @@ const Game: React.FC<IGame> = props => {
       </Grid>
       <Grid container spacing={2} justify="center" direction="row">
         <Grid item lg={4} xs={6}>
-          {teamA.map(a => {
-            return <Player key={a.id} player={a} />;
-          })}
+          <Paper className={classes.playerPaper}>
+            {teamA.map(a => {
+              return <Player key={a.id} player={a} />;
+            })}
+          </Paper>
         </Grid>
+
         <Grid item lg={4} xs={6}>
-          {teamB.map(b => {
-            return <Player key={b.id} player={b} />;
-          })}
+          <Paper className={classes.playerPaper}>
+            {teamB.map(b => {
+              return <Player key={b.id} player={b} />;
+            })}
+          </Paper>
         </Grid>
+
         <Grid container justify="center">
           <Grid item lg={3} xs={10}>
             <Button
