@@ -4,6 +4,7 @@ import theme from "./ui/Theme";
 // import { Button } from "@material-ui/core";
 import Form from "./components/Form";
 import Game from "./components/Game";
+import Stats from "./components/Stats";
 import { Button } from "@material-ui/core";
 
 const NUMBER_OF_PLAYERS = 5;
@@ -50,8 +51,10 @@ const App: React.FC = () => {
         ) : (
           <Game playerArray={playerArray} setPlayerArray={setPlayerArray} />
         )}
+
+        <Stats />
+        <Button onClick={removePlayerArrayFromLocalStorage}>REMOVE</Button>
       </div>
-      <Button onClick={removePlayerArrayFromLocalStorage}>REMOVE</Button>
     </ThemeProvider>
   );
 };
