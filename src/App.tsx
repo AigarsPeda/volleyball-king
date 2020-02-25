@@ -52,7 +52,7 @@ const App: React.FC = () => {
           <Game playerArray={playerArray} setPlayerArray={setPlayerArray} />
         )}
 
-        <Stats />
+        <Stats playerArray={playerArray} />
         <Button onClick={removePlayerArrayFromLocalStorage}>REMOVE</Button>
       </div>
     </ThemeProvider>

@@ -6,23 +6,80 @@ import {
   makeStyles,
   createStyles,
   Theme,
-  Button,
-  TextField
+  TableContainer,
+  Table,
+  TableHead,
+  TableCell,
+  TableRow,
+  TableBody
 } from "@material-ui/core";
+
+interface IStats {
+  playerArray: Player[];
+}
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    root: {
-      flexGrow: 1
+    table: {
+      maxWidth: 650,
+      // background:
+      //   "linear-gradient(90deg, rgba(248,106,40,1) 0%, rgba(232,48,58,1) 100%)"
+      backgroundColor: "#2a2b37",
+      color: "#fff"
+    },
+    text: {
+      color: "#fff",
+      fontWeight: "bolder",
+      letterSpacing: "3px",
+      borderBottom: "none"
+    },
+    numbers: {
+      color: "#fff",
+      fontWeight: "bolder",
+
+      borderBottom: "none"
     }
   })
 );
 
-const Stats: React.FC = () => {
+const Stats: React.FC<IStats> = props => {
+  const { playerArray } = props;
   const classes = useStyles();
   return (
-    <Grid container>
-      <h1>STATS</h1>
+    <Grid container justify="center">
+      <TableContainer
+        component={Paper}
+        style={{ maxWidth: "500px", marginTop: "50px" }}
+      >
+        <Table className={classes.table} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell className={classes.text}></TableCell>
+              <TableCell align="right" className={classes.text}>
+                Punkti
+              </TableCell>
+              <TableCell align="right" className={classes.text}>
+                Uzvaras
+              </TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {playerArray.map(player => (
+              <TableRow key={player.id}>
+                <TableCell component="th" scope="row" className={classes.text}>
+                  {player.name}
+                </TableCell>
+                <TableCell align="right" className={classes.numbers}>
+                  {player.smallPoints}
+                </TableCell>
+                <TableCell align="right" className={classes.numbers}>
+                  {player.bigPoints}
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
     </Grid>
   );
 };
