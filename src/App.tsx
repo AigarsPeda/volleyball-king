@@ -78,7 +78,7 @@ const App: React.FC = () => {
               sorterPlayerArray={sorterPlayerArray}
               setSortingOrder={setSortingOrder}
             />
-            <div style={{ position: "absolute", bottom: 15, right: 15 }}>
+            <div style={{ display: "flex", justifyContent: "center" }}>
               <Button
                 color="primary"
                 onClick={() => {
