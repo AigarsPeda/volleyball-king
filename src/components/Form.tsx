@@ -59,7 +59,7 @@ const Form: React.FC<IForm> = props => {
           className={classes.button}
           type="submit"
         >
-          Nākamais
+          Pievienot spēlētāju
         </Button>
       </form>
     </div>
