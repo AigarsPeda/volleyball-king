@@ -85,6 +85,9 @@ const Game: React.FC<IGame> = props => {
   const teamB: Player[] = [];
 
   const findWinner = () => {
+    if (teamAScore.length === 0 || teamBScore.length === 0) {
+      return;
+    }
     if (parseInt(teamAScore) > parseInt(teamBScore)) {
       const [playerOne, playerTwo] = teamA;
       const newPlayerArray = playerArray.map(player => {
@@ -244,7 +247,8 @@ const Game: React.FC<IGame> = props => {
             style={{
               marginTop: "15px",
               background:
-                "linear-gradient(90deg, rgba(248,106,40,1) 0%, rgba(232,48,58,1) 100%)"
+                "linear-gradient(90deg, rgba(248,106,40,1) 0%, rgba(232,48,58,1) 100%)",
+              marginBottom: "10px"
             }}
           >
             <TextField

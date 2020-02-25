@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import {
   Grid,
@@ -22,8 +22,6 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     table: {
       maxWidth: 650,
-      // background:
-      //   "linear-gradient(90deg, rgba(248,106,40,1) 0%, rgba(232,48,58,1) 100%)"
       backgroundColor: "#2a2b37",
       color: "#fff"
     },
@@ -49,7 +47,7 @@ const Stats: React.FC<IStats> = props => {
     <Grid container justify="center">
       <TableContainer
         component={Paper}
-        style={{ maxWidth: "500px", marginTop: "50px" }}
+        style={{ maxWidth: "500px", marginTop: "30px" }}
       >
         <Table className={classes.table} aria-label="simple table">
           <TableHead>
