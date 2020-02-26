@@ -26,11 +26,10 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 interface IForm {
   savePlayerArrayToSate: (name: string) => void;
-  removePlayerArrayFromLocalStorage: () => void;
 }
 
 const Form: React.FC<IForm> = props => {
-  const { savePlayerArrayToSate, removePlayerArrayFromLocalStorage } = props;
+  const { savePlayerArrayToSate } = props;
 
   const [name, setName] = useState<string>("");
   const classes = useStyles();
