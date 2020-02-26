@@ -298,7 +298,7 @@ const Game: React.FC<IGame> = props => {
           </Paper>
         </Grid>
 
-        <Grid container justify="center">
+        <Grid container justify="center" direction="row">
           <Grid item lg={3} xs={10}>
             <Button
               onClick={findWinner}
@@ -308,6 +308,20 @@ const Game: React.FC<IGame> = props => {
             >
               Nākamā spēle
             </Button>
+          </Grid>
+          <Grid item lg={3} xs={10}>
+            <div
+              style={{
+                textAlign: "center",
+                marginBottom: "15px",
+                color: "#fff",
+                background: "transparent"
+              }}
+            >
+              <h3 style={{ letterSpacing: "2px" }}>
+                Spēle Nr {gameNumber} No 15
+              </h3>
+            </div>
           </Grid>
         </Grid>
       </Grid>

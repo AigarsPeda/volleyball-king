@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { ThemeProvider } from "@material-ui/core/styles";
 import theme from "./ui/Theme";
-import { Button, Grid } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 
 import Form from "./components/Form";
 import Game from "./components/Game";
 import Stats from "./components/Stats";
+import TournamentEnd from "./components/TournamentEnd";
 
 const NUMBER_OF_PLAYERS = 5;
 
@@ -62,30 +63,11 @@ const App: React.FC = () => {
   if (gameNumber === 15) {
     return (
       <ThemeProvider theme={theme}>
-        <Grid container justify="center">
-          <h1 style={{ fontSize: "45px", color: "#fff" }}>Turnīrs Beidzies!</h1>
-          <Stats
-            sorterPlayerArray={sorterPlayerArray}
-            setSortingOrder={setSortingOrder}
-          />
-          <div style={{ display: "flex", justifyContent: "center" }}>
-            <Button
-              //color="primary"
-              style={{
-                marginTop: "10px",
-                color: "rgba(232,48,58,1)",
-                fontSize: "25px",
-                letterSpacing: "2px"
-              }}
-              onClick={() => {
-                if (window.confirm("Vai tiešām sākt jaunu turnīru?"))
-                  removePlayerArrayFromLocalStorage();
-              }}
-            >
-              SĀKT JAUNU TŪRNĪRU
-            </Button>
-          </div>
-        </Grid>
+        <TournamentEnd
+          sorterPlayerArray={sorterPlayerArray}
+          setSortingOrder={setSortingOrder}
+          removePlayerArrayFromLocalStorage={removePlayerArrayFromLocalStorage}
+        />
       </ThemeProvider>
     );
   }
@@ -111,7 +93,6 @@ const App: React.FC = () => {
             />
             <div style={{ display: "flex", justifyContent: "center" }}>
               <Button
-                //color="primary"
                 style={{ color: "rgba(232,48,58,1)" }}
                 onClick={() => {
                   if (window.confirm("Vai tiešām sākt jaunu turnīru?"))
