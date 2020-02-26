@@ -309,7 +309,7 @@ const Game: React.FC<IGame> = props => {
               Nākamā spēle
             </Button>
           </Grid>
-          <Grid item lg={3} xs={10}>
+          <Grid item lg={12} xs={10}>
             <div
               style={{
                 textAlign: "center",
