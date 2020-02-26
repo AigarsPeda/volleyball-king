@@ -292,7 +292,27 @@ const Game: React.FC<IGame> = props => {
           } else if (player.id === 1 || player.id === 2) {
             teamB.push(player);
           }
-
+          break;
+        case 7:
+          if (player.id === 0 || player.id === 1) {
+            teamA.push(player);
+          } else if (player.id === 2 || player.id === 3) {
+            teamB.push(player);
+          }
+          break;
+        case 8:
+          if (player.id === 0 || player.id === 2) {
+            teamA.push(player);
+          } else if (player.id === 1 || player.id === 3) {
+            teamB.push(player);
+          }
+          break;
+        case 9:
+          if (player.id === 0 || player.id === 3) {
+            teamA.push(player);
+          } else if (player.id === 1 || player.id === 2) {
+            teamB.push(player);
+          }
           break;
         default:
           break;

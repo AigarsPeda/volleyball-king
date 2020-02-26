@@ -9,8 +9,6 @@ import Stats from "./components/Stats";
 import TournamentEnd from "./components/TournamentEnd";
 import PlayerCountSelect from "./components/PlayerCountSelect";
 
-//const NUMBER_OF_PLAYERS = null;
-
 const App: React.FC = () => {
   const [playerArray, setPlayerArray] = useState<Player[]>(() =>
     JSON.parse(localStorage.getItem("playerArray") || "[]")
@@ -85,7 +83,7 @@ const App: React.FC = () => {
 
   if (
     (gameNumber === 15 && numberOfPlayers === 5) ||
-    (gameNumber === 6 && numberOfPlayers === 4)
+    (gameNumber === 9 && numberOfPlayers === 4)
   ) {
     return (
       <ThemeProvider theme={theme}>
