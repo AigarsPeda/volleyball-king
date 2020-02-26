@@ -87,11 +87,15 @@ const App: React.FC = () => {
   ) {
     return (
       <ThemeProvider theme={theme}>
-        <TournamentEnd
-          sorterPlayerArray={sorterPlayerArray}
-          setSortingOrder={setSortingOrder}
-          removePlayerArrayFromLocalStorage={removePlayerArrayFromLocalStorage}
-        />
+        <div style={{ padding: "5px" }}>
+          <TournamentEnd
+            sorterPlayerArray={sorterPlayerArray}
+            setSortingOrder={setSortingOrder}
+            removePlayerArrayFromLocalStorage={
+              removePlayerArrayFromLocalStorage
+            }
+          />
+        </div>
       </ThemeProvider>
     );
   }

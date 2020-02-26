@@ -14,11 +14,13 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     button: {
       display: "block",
-      marginTop: theme.spacing(2)
+      marginTop: theme.spacing(2),
+      color: "#fff",
+      fontSize: "18px"
     },
     formControl: {
       margin: theme.spacing(1),
-      minWidth: 120
+      minWidth: 190
     }
   })
 );
@@ -47,29 +49,52 @@ const PlayerCountSelect: React.FC<IPlayerCountSelect> = props => {
   };
 
   return (
-    <Grid container justify="center">
-      <Button className={classes.button} onClick={handleOpen}>
-        Cik spētētāju būs?
-      </Button>
-      <FormControl className={classes.formControl}>
-        <InputLabel id="demo-controlled-open-select-label">Skaits</InputLabel>
-        <Select
-          labelId="demo-controlled-open-select-label"
-          id="demo-controlled-open-select"
-          open={open}
-          onClose={handleClose}
-          onOpen={handleOpen}
-          value={numberOfPlayers}
-          onChange={handleChange}
-        >
-          <MenuItem value={0}>
-            <em>None</em>
-          </MenuItem>
+    <Grid container direction="column">
+      <Grid
+        item
+        style={{
+          marginBottom: "10px",
+          marginLeft: "auto",
+          marginRight: "auto",
+          fontSize: "30px",
+          fontWeight: "bold",
+          letterSpacing: "3px",
+          background:
+            "linear-gradient(90deg, rgba(248,106,40,1) 0%, rgba(232,48,58,1) 100%)",
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent"
+        }}
+      >
+        <h1>THE KING</h1>
+      </Grid>
+      <Grid item style={{ margin: "auto" }}>
+        <Button className={classes.button} onClick={handleOpen}>
+          Cik spēlētāju būs?
+        </Button>
+        <FormControl className={classes.formControl}>
+          <InputLabel id="demo-controlled-open-select-label">Skaits</InputLabel>
+          <Select
+            labelId="demo-controlled-open-select-label"
+            id="demo-controlled-open-select"
+            open={open}
+            onClose={handleClose}
+            onOpen={handleOpen}
+            value={numberOfPlayers}
+            onChange={handleChange}
+          >
+            <MenuItem value={0} style={{ letterSpacing: "1px" }}>
+              <em>None</em>
+            </MenuItem>
 
-          <MenuItem value={4}>Četri</MenuItem>
-          <MenuItem value={5}>Pieci</MenuItem>
-        </Select>
-      </FormControl>
+            <MenuItem value={4} style={{ letterSpacing: "1px" }}>
+              <em>Četri</em>
+            </MenuItem>
+            <MenuItem value={5} style={{ letterSpacing: "1px" }}>
+              <em>Pieci</em>
+            </MenuItem>
+          </Select>
+        </FormControl>
+      </Grid>
     </Grid>
   );
 };
