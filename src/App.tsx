@@ -102,7 +102,12 @@ const App: React.FC = () => {
     <ThemeProvider theme={theme}>
       <div style={{ padding: "5px" }}>
         {playerArray.length < numberOfPlayers ? (
-          <Form savePlayerArrayToSate={savePlayerArrayToSate} />
+          <Form
+            savePlayerArrayToSate={savePlayerArrayToSate}
+            removePlayerArrayFromLocalStorage={
+              removePlayerArrayFromLocalStorage
+            }
+          />
         ) : (
           <Game
             playerArray={playerArray}

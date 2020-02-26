@@ -26,10 +26,11 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 interface IForm {
   savePlayerArrayToSate: (name: string) => void;
+  removePlayerArrayFromLocalStorage: () => void;
 }
 
 const Form: React.FC<IForm> = props => {
-  const { savePlayerArrayToSate } = props;
+  const { savePlayerArrayToSate, removePlayerArrayFromLocalStorage } = props;
 
   const [name, setName] = useState<string>("");
   const classes = useStyles();
@@ -60,6 +61,12 @@ const Form: React.FC<IForm> = props => {
           type="submit"
         >
           Pievienot spēlētāju
+        </Button>
+        <Button
+          onClick={removePlayerArrayFromLocalStorage}
+          style={{ color: "rgba(232,48,58,1)" }}
+        >
+          Atpakaļ
         </Button>
       </form>
     </div>
