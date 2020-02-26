@@ -62,12 +62,6 @@ const Form: React.FC<IForm> = props => {
         >
           Pievienot spēlētāju
         </Button>
-        <Button
-          onClick={removePlayerArrayFromLocalStorage}
-          style={{ color: "rgba(232,48,58,1)" }}
-        >
-          Atpakaļ
-        </Button>
       </form>
     </div>
   );

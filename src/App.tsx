@@ -117,6 +117,16 @@ const App: React.FC = () => {
             numberOfPlayers={numberOfPlayers}
           />
         )}
+        {!playerArray.length && (
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <Button
+              onClick={removePlayerArrayFromLocalStorage}
+              style={{ color: "rgba(232,48,58,1)" }}
+            >
+              Atpakaļ
+            </Button>
+          </div>
+        )}
         {playerArray.length ? (
           <>
             <Stats
