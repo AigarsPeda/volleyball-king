@@ -7,8 +7,9 @@ import Form from "./components/Form";
 import Game from "./components/Game";
 import Stats from "./components/Stats";
 import TournamentEnd from "./components/TournamentEnd";
+import PlayerCountSelect from "./components/PlayerCountSelect";
 
-const NUMBER_OF_PLAYERS = 5;
+//const NUMBER_OF_PLAYERS = null;
 
 const App: React.FC = () => {
   const [playerArray, setPlayerArray] = useState<Player[]>(() =>
@@ -18,11 +19,15 @@ const App: React.FC = () => {
     JSON.parse(localStorage.getItem("gameNumber") || "1")
   );
   const [sortingOrder, setSortingOrder] = useState("bigPoints");
+  const [numberOfPlayers, setNumberOfPlayers] = useState<number>(() =>
+    JSON.parse(localStorage.getItem("numberOfPlayers") || "0")
+  );
 
   useEffect(() => {
     localStorage.setItem("playerArray", JSON.stringify(playerArray));
     localStorage.setItem("gameNumber", JSON.stringify(gameNumber));
-  }, [playerArray, gameNumber]);
+    localStorage.setItem("numberOfPlayers", JSON.stringify(numberOfPlayers));
+  }, [playerArray, gameNumber, numberOfPlayers]);
 
   const removePlayerArrayFromLocalStorage = () => {
     let newPlayerArray = playerArray;
@@ -31,11 +36,14 @@ const App: React.FC = () => {
     let newGameNumber = gameNumber;
     newGameNumber = 1;
     setGameNumber(newGameNumber);
+    let newNumberOfPlayers = numberOfPlayers;
+    newNumberOfPlayers = 0;
+    setNumberOfPlayers(newNumberOfPlayers);
   };
 
   const savePlayerArrayToSate = (name: string) => {
     const newPlayer: Player = {
-      id: Math.floor(Math.random() * Math.floor(5)),
+      id: Math.floor(Math.random() * Math.floor(numberOfPlayers)),
       name: name.trim(),
       smallPoints: 0,
       bigPoints: 0
@@ -44,7 +52,7 @@ const App: React.FC = () => {
     const arrayOfId = playerArray.map(player => player.id);
 
     do {
-      newPlayer.id = Math.floor(Math.random() * Math.floor(5));
+      newPlayer.id = Math.floor(Math.random() * Math.floor(numberOfPlayers));
     } while (arrayOfId.includes(newPlayer.id));
 
     setPlayerArray([...playerArray, newPlayer]);
@@ -60,7 +68,25 @@ const App: React.FC = () => {
     return b.id - a.id;
   });
 
-  if (gameNumber === 15) {
+  console.log(playerArray);
+
+  if (numberOfPlayers === 0) {
+    return (
+      <ThemeProvider theme={theme}>
+        <PlayerCountSelect
+          numberOfPlayers={numberOfPlayers}
+          setNumberOfPlayers={setNumberOfPlayers}
+        />
+      </ThemeProvider>
+    );
+  }
+
+  console.log(numberOfPlayers);
+
+  if (
+    (gameNumber === 15 && numberOfPlayers === 5) ||
+    (gameNumber === 6 && numberOfPlayers === 4)
+  ) {
     return (
       <ThemeProvider theme={theme}>
         <TournamentEnd
@@ -75,7 +101,7 @@ const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
       <div style={{ padding: "5px" }}>
-        {playerArray.length < NUMBER_OF_PLAYERS ? (
+        {playerArray.length < numberOfPlayers ? (
           <Form savePlayerArrayToSate={savePlayerArrayToSate} />
         ) : (
           <Game
@@ -83,6 +109,7 @@ const App: React.FC = () => {
             setPlayerArray={setPlayerArray}
             gameNumber={gameNumber}
             setGameNumber={setGameNumber}
+            numberOfPlayers={numberOfPlayers}
           />
         )}
         {playerArray.length ? (
