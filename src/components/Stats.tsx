@@ -49,7 +49,7 @@ const Stats: React.FC<IStats> = props => {
     <Grid container justify="center">
       <TableContainer
         component={Paper}
-        style={{ maxWidth: "500px", marginTop: "30px" }}
+        style={{ maxWidth: "500px", marginTop: "10px" }}
       >
         <Table className={classes.table} aria-label="simple table">
           <TableHead>

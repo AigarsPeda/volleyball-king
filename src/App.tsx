@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { ThemeProvider } from "@material-ui/core/styles";
 import theme from "./ui/Theme";
-import { Button } from "@material-ui/core";
+import { Button, Grid } from "@material-ui/core";
 
 import Form from "./components/Form";
 import Game from "./components/Game";
@@ -58,6 +58,32 @@ const App: React.FC = () => {
     }
     return b.id - a.id;
   });
+
+  if (gameNumber === 15) {
+    return (
+      <ThemeProvider theme={theme}>
+        <Grid container justify="center">
+          <h1 style={{ fontSize: "45px", color: "#fff" }}>Turnīrs Beidzies!</h1>
+          <Stats
+            sorterPlayerArray={sorterPlayerArray}
+            setSortingOrder={setSortingOrder}
+          />
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <Button
+              color="primary"
+              style={{ marginTop: "10px" }}
+              onClick={() => {
+                if (window.confirm("Vai tiešām sākt jaunu turnīru?"))
+                  removePlayerArrayFromLocalStorage();
+              }}
+            >
+              JAUNS TURNĪRS
+            </Button>
+          </div>
+        </Grid>
+      </ThemeProvider>
+    );
+  }
 
   return (
     <ThemeProvider theme={theme}>
