@@ -318,9 +318,13 @@ const Game: React.FC<IGame> = props => {
                 background: "transparent"
               }}
             >
-              <h3 style={{ letterSpacing: "2px" }}>
-                Spēle Nr {gameNumber} No 15
-              </h3>
+              <h4 style={{ letterSpacing: "2px" }}>
+                Spēle Nr{" "}
+                <span style={{ fontSize: "28px", color: "rgba(232,48,58,1)" }}>
+                  {gameNumber}
+                </span>{" "}
+                No 15
+              </h4>
             </div>
           </Grid>
         </Grid>
