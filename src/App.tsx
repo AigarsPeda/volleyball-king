@@ -82,8 +82,8 @@ const App: React.FC = () => {
   console.log(numberOfPlayers);
 
   if (
-    (gameNumber === 15 && numberOfPlayers === 5) ||
-    (gameNumber === 9 && numberOfPlayers === 4)
+    (gameNumber === 16 && numberOfPlayers === 5) ||
+    (gameNumber === 10 && numberOfPlayers === 4)
   ) {
     return (
       <ThemeProvider theme={theme}>
