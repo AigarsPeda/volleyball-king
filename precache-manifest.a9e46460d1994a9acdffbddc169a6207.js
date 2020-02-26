@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "ffff3950b3049d326b1379c263ed2e49",
+    "revision": "5705cb23731a15245bcd02158a8b7c62",
     "url": "/volleyball-king/index.html"
   },
   {
-    "revision": "fd7b676460045db29f50",
+    "revision": "564c7cb611d5ffe921fd",
     "url": "/volleyball-king/static/css/main.e999132f.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/volleyball-king/static/js/2.e6e55073.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "fd7b676460045db29f50",
-    "url": "/volleyball-king/static/js/main.34e2d071.chunk.js"
+    "revision": "564c7cb611d5ffe921fd",
+    "url": "/volleyball-king/static/js/main.0cb642f5.chunk.js"
   },
   {
     "revision": "183da78ea0366fd55822",
