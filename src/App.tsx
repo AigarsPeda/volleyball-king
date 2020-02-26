@@ -70,14 +70,19 @@ const App: React.FC = () => {
           />
           <div style={{ display: "flex", justifyContent: "center" }}>
             <Button
-              color="primary"
-              style={{ marginTop: "10px" }}
+              //color="primary"
+              style={{
+                marginTop: "10px",
+                color: "rgba(232,48,58,1)",
+                fontSize: "25px",
+                letterSpacing: "2px"
+              }}
               onClick={() => {
                 if (window.confirm("Vai tiešām sākt jaunu turnīru?"))
                   removePlayerArrayFromLocalStorage();
               }}
             >
-              JAUNS TURNĪRS
+              SĀKT JAUNU TŪRNĪRU
             </Button>
           </div>
         </Grid>
@@ -106,7 +111,8 @@ const App: React.FC = () => {
             />
             <div style={{ display: "flex", justifyContent: "center" }}>
               <Button
-                color="primary"
+                //color="primary"
+                style={{ color: "rgba(232,48,58,1)" }}
                 onClick={() => {
                   if (window.confirm("Vai tiešām sākt jaunu turnīru?"))
                     removePlayerArrayFromLocalStorage();

@@ -49,7 +49,8 @@ const useStyles = makeStyles((theme: Theme) =>
       marginTop: "10px",
       width: "100%",
       height: "50px",
-      color: "#fff"
+      color: "#fff",
+      marginBottom: "15px"
     },
     playerPaper: {
       padding: "1px",

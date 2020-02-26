@@ -1,7 +1,7 @@
 import { createMuiTheme, Theme } from "@material-ui/core/styles";
 
 const orange = "#f86a28";
-const gray = "#22222a";
+const red = "rgba(232,48,58,1)";
 
 const theme: Theme = createMuiTheme({
   palette: {
@@ -9,7 +9,7 @@ const theme: Theme = createMuiTheme({
       main: `${orange}`
     },
     secondary: {
-      main: `${gray}`
+      main: `${red}`
     }
   },
   typography: {
