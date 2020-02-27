@@ -11,6 +11,9 @@ import {
   TextField
 } from "@material-ui/core";
 
+import { gameForFive, gameForFour } from "../Utils/gameLogic";
+import { whoIsWinner } from "../Utils//findWinner";
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -95,31 +98,11 @@ const Game: React.FC<IGame> = props => {
       return;
     }
     if (parseInt(teamAScore) > parseInt(teamBScore)) {
-      const [playerOne, playerTwo] = teamA;
-      const newPlayerArray = playerArray.map(player => {
-        if (player.id === playerOne.id || player.id === playerTwo.id) {
-          return {
-            ...player,
-            bigPoints: player.bigPoints + 1,
-            smallPoints: player.smallPoints + parseInt(teamAScore)
-          };
-        }
-        return player;
-      });
+      const newPlayerArray = whoIsWinner(teamA, playerArray, teamAScore);
       setPlayerArray(newPlayerArray);
     }
     if (parseInt(teamAScore) < parseInt(teamBScore)) {
-      const [playerOne, playerTwo] = teamB;
-      const newPlayerArray = playerArray.map(player => {
-        if (player.id === playerOne.id || player.id === playerTwo.id) {
-          return {
-            ...player,
-            bigPoints: player.bigPoints + 1,
-            smallPoints: player.smallPoints + parseInt(teamBScore)
-          };
-        }
-        return player;
-      });
+      const newPlayerArray = whoIsWinner(teamB, playerArray, teamBScore);
       setPlayerArray(newPlayerArray);
     }
     setTeamAScore("");
@@ -131,193 +114,13 @@ const Game: React.FC<IGame> = props => {
     e.target.value = e.target.value.replace(/[^0-9]/g, "");
   };
 
+  //Game logic for 5
   if (numberOfPlayers === 5) {
-    playerArray.forEach(player => {
-      switch (gameNumber) {
-        case 1:
-          if (player.id === 0 || player.id === 1) {
-            teamA.push(player);
-          } else if (player.id === 2 || player.id === 3) {
-            teamB.push(player);
-          }
-          break;
-        case 2:
-          if (player.id === 0 || player.id === 2) {
-            teamA.push(player);
-          } else if (player.id === 1 || player.id === 4) {
-            teamB.push(player);
-          }
-          break;
-        case 3:
-          if (player.id === 0 || player.id === 4) {
-            teamA.push(player);
-          } else if (player.id === 1 || player.id === 3) {
-            teamB.push(player);
-          }
-          break;
-        case 4:
-          if (player.id === 0 || player.id === 3) {
-            teamA.push(player);
-          } else if (player.id === 2 || player.id === 4) {
-            teamB.push(player);
-          }
-          break;
-        case 5:
-          if (player.id === 1 || player.id === 2) {
-            teamA.push(player);
-          } else if (player.id === 3 || player.id === 4) {
-            teamB.push(player);
-          }
-          break;
-        case 6:
-          if (player.id === 0 || player.id === 2) {
-            teamA.push(player);
-          } else if (player.id === 1 || player.id === 3) {
-            teamB.push(player);
-          }
-          break;
-        case 7:
-          if (player.id === 0 || player.id === 1) {
-            teamA.push(player);
-          } else if (player.id === 2 || player.id === 4) {
-            teamB.push(player);
-          }
-          break;
-        case 8:
-          if (player.id === 0 || player.id === 3) {
-            teamA.push(player);
-          } else if (player.id === 1 || player.id === 4) {
-            teamB.push(player);
-          }
-          break;
-        case 9:
-          if (player.id === 0 || player.id === 4) {
-            teamA.push(player);
-          } else if (player.id === 2 || player.id === 3) {
-            teamB.push(player);
-          }
-          break;
-        case 10:
-          if (player.id === 1 || player.id === 3) {
-            teamA.push(player);
-          } else if (player.id === 2 || player.id === 4) {
-            teamB.push(player);
-          }
-          break;
-        case 11:
-          if (player.id === 0 || player.id === 3) {
-            teamA.push(player);
-          } else if (player.id === 1 || player.id === 2) {
-            teamB.push(player);
-          }
-          break;
-
-        case 12:
-          if (player.id === 0 || player.id === 4) {
-            teamA.push(player);
-          } else if (player.id === 1 || player.id === 2) {
-            teamB.push(player);
-          }
-          break;
-        case 13:
-          if (player.id === 0 || player.id === 1) {
-            teamA.push(player);
-          } else if (player.id === 3 || player.id === 4) {
-            teamB.push(player);
-          }
-          break;
-        case 14:
-          if (player.id === 0 || player.id === 2) {
-            teamA.push(player);
-          } else if (player.id === 3 || player.id === 4) {
-            teamB.push(player);
-          }
-          break;
-        case 15:
-          if (player.id === 1 || player.id === 4) {
-            teamA.push(player);
-          } else if (player.id === 2 || player.id === 3) {
-            teamB.push(player);
-          }
-          break;
-
-        default:
-          break;
-      }
-    });
+    gameForFive(playerArray, gameNumber, teamA, teamB);
   }
-
+  //Game logic for 4
   if (numberOfPlayers === 4) {
-    playerArray.forEach(player => {
-      switch (gameNumber) {
-        case 1:
-          if (player.id === 0 || player.id === 1) {
-            teamA.push(player);
-          } else if (player.id === 2 || player.id === 3) {
-            teamB.push(player);
-          }
-          break;
-        case 2:
-          if (player.id === 0 || player.id === 2) {
-            teamA.push(player);
-          } else if (player.id === 1 || player.id === 3) {
-            teamB.push(player);
-          }
-          break;
-        case 3:
-          if (player.id === 0 || player.id === 3) {
-            teamA.push(player);
-          } else if (player.id === 1 || player.id === 2) {
-            teamB.push(player);
-          }
-
-          break;
-        case 4:
-          if (player.id === 0 || player.id === 1) {
-            teamA.push(player);
-          } else if (player.id === 2 || player.id === 3) {
-            teamB.push(player);
-          }
-          break;
-        case 5:
-          if (player.id === 0 || player.id === 2) {
-            teamA.push(player);
-          } else if (player.id === 1 || player.id === 3) {
-            teamB.push(player);
-          }
-          break;
-        case 6:
-          if (player.id === 0 || player.id === 3) {
-            teamA.push(player);
-          } else if (player.id === 1 || player.id === 2) {
-            teamB.push(player);
-          }
-          break;
-        case 7:
-          if (player.id === 0 || player.id === 1) {
-            teamA.push(player);
-          } else if (player.id === 2 || player.id === 3) {
-            teamB.push(player);
-          }
-          break;
-        case 8:
-          if (player.id === 0 || player.id === 2) {
-            teamA.push(player);
-          } else if (player.id === 1 || player.id === 3) {
-            teamB.push(player);
-          }
-          break;
-        case 9:
-          if (player.id === 0 || player.id === 3) {
-            teamA.push(player);
-          } else if (player.id === 1 || player.id === 2) {
-            teamB.push(player);
-          }
-          break;
-        default:
-          break;
-      }
-    });
+    gameForFour(playerArray, gameNumber, teamA, teamB);
   }
 
   return (

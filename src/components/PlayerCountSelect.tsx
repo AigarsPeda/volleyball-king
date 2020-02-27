@@ -21,6 +21,20 @@ const useStyles = makeStyles((theme: Theme) =>
     formControl: {
       margin: theme.spacing(1),
       minWidth: 190
+    },
+    title: {
+      fontSize: "60px",
+      fontWeight: "bold",
+      letterSpacing: "3px",
+      background:
+        "linear-gradient(90deg, rgba(248,106,40,1) 0%, rgba(232,48,58,1) 100%)",
+      WebkitBackgroundClip: "text",
+      WebkitTextFillColor: "transparent"
+    },
+    grid: {
+      marginBottom: "10px",
+      marginLeft: "auto",
+      marginRight: "auto"
     }
   })
 );
@@ -50,27 +64,8 @@ const PlayerCountSelect: React.FC<IPlayerCountSelect> = props => {
 
   return (
     <Grid container direction="column">
-      <Grid
-        item
-        style={{
-          marginBottom: "10px",
-          marginLeft: "auto",
-          marginRight: "auto"
-        }}
-      >
-        <h1
-          style={{
-            fontSize: "60px",
-            fontWeight: "bold",
-            letterSpacing: "3px",
-            background:
-              "linear-gradient(90deg, rgba(248,106,40,1) 0%, rgba(232,48,58,1) 100%)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent"
-          }}
-        >
-          THE KING
-        </h1>
+      <Grid item className={classes.grid}>
+        <h1 className={classes.title}>THE KING</h1>
       </Grid>
       <Grid item style={{ margin: "auto" }}>
         <Button className={classes.button} onClick={handleOpen}>
