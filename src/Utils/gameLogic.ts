@@ -1,3 +1,4 @@
+//Game for Five
 export const gameForFive = (
   playerArray: Player[],
   gameNumber: number,
@@ -117,6 +118,7 @@ export const gameForFive = (
   });
 };
 
+//Game for Four
 export const gameForFour = (
   playerArray: Player[],
   gameNumber: number,
