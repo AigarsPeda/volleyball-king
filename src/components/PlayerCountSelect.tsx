@@ -55,17 +55,22 @@ const PlayerCountSelect: React.FC<IPlayerCountSelect> = props => {
         style={{
           marginBottom: "10px",
           marginLeft: "auto",
-          marginRight: "auto",
-          fontSize: "30px",
-          fontWeight: "bold",
-          letterSpacing: "3px",
-          background:
-            "linear-gradient(90deg, rgba(248,106,40,1) 0%, rgba(232,48,58,1) 100%)",
-          WebkitBackgroundClip: "text",
-          WebkitTextFillColor: "transparent"
+          marginRight: "auto"
         }}
       >
-        <h1>THE KING</h1>
+        <h1
+          style={{
+            fontSize: "60px",
+            fontWeight: "bold",
+            letterSpacing: "3px",
+            background:
+              "linear-gradient(90deg, rgba(248,106,40,1) 0%, rgba(232,48,58,1) 100%)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent"
+          }}
+        >
+          THE KING
+        </h1>
       </Grid>
       <Grid item style={{ margin: "auto" }}>
         <Button className={classes.button} onClick={handleOpen}>
