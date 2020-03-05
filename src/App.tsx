@@ -72,7 +72,18 @@ const App: React.FC = () => {
     setPlayerToEdit(newPlayer);
   };
 
-  console.log(playerArray);
+  const saveNewPlayerName = (playerToEdit: Player, newName: string) => {
+    const newPlayerArray = playerArray.map(player => {
+      if (player.id === playerToEdit.id) {
+        return {
+          ...player,
+          name: newName
+        };
+      }
+      return player;
+    });
+    setPlayerArray(newPlayerArray);
+  };
 
   if (numberOfPlayers === 0) {
     return (
@@ -84,8 +95,6 @@ const App: React.FC = () => {
       </ThemeProvider>
     );
   }
-
-  console.log(numberOfPlayers);
 
   if (
     (gameNumber === 16 && numberOfPlayers === 5) ||
@@ -137,6 +146,7 @@ const App: React.FC = () => {
               setSortingOrder={setSortingOrder}
               editPlayerName={editPlayerName}
               playerToEdit={playerToEdit}
+              saveNewPlayerName={saveNewPlayerName}
             />
             <div style={{ display: "flex", justifyContent: "center" }}>
               <Button

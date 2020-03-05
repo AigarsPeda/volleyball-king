@@ -125,7 +125,6 @@ const Game: React.FC<IGame> = props => {
 
   return (
     <div className={classes.root}>
-      {console.log(gameNumber)}
       <Grid container justify="center" spacing={2}>
         <Grid item>
           <Paper

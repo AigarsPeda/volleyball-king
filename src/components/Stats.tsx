@@ -47,6 +47,7 @@ interface IStats {
   setSortingOrder: React.Dispatch<React.SetStateAction<string>>;
   editPlayerName?: (id: number) => void;
   playerToEdit?: Player | undefined;
+  saveNewPlayerName?: (playerToEdit: Player, newName: string) => void;
 }
 
 const Stats: React.FC<IStats> = props => {
@@ -54,7 +55,8 @@ const Stats: React.FC<IStats> = props => {
     sorterPlayerArray,
     setSortingOrder,
     editPlayerName,
-    playerToEdit
+    playerToEdit,
+    saveNewPlayerName
   } = props;
   const classes = useStyles();
 
@@ -114,7 +116,12 @@ const Stats: React.FC<IStats> = props => {
           </Table>
         </TableContainer>
       </Grid>
-      <EditPlayer playerToEdit={playerToEdit} />
+      {editPlayerName && saveNewPlayerName && (
+        <EditPlayer
+          playerToEdit={playerToEdit}
+          saveNewPlayerName={saveNewPlayerName}
+        />
+      )}
     </>
   );
 };
