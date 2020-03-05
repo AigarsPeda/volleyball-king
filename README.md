@@ -18,3 +18,6 @@ You will also see any lint errors in the console.
 ![screenshots](/screenshots/2.jpg)
 ![screenshots](/screenshots/3.jpg)
 ![screenshots](/screenshots/4.jpg)
+![screenshots](/screenshots/5.jpg)
+![screenshots](/screenshots/6.jpg)
+![screenshots](/screenshots/7.jpg)
