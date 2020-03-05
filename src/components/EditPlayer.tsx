@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button, TextField, makeStyles, Theme } from "@material-ui/core";
+import { IoIosClose } from "react-icons/io";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -23,20 +24,25 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   textField: {
     color: "#ffffff"
+  },
+  plus: {
+    color: "rgba(232,48,58,1)",
+    textAlign: "right",
+    cursor: "pointer",
+    fontSize: "45px"
   }
 }));
 
 interface IEditPlayer {
   playerToEdit: Player | undefined;
   saveNewPlayerName: (playerToEdit: Player, newName: string) => void;
+  setOpenEditPlayer: React.Dispatch<React.SetStateAction<boolean>> | undefined;
 }
 
 const EditPlayer: React.FC<IEditPlayer> = props => {
   const [name, setName] = useState("");
-  const { playerToEdit, saveNewPlayerName } = props;
+  const { playerToEdit, saveNewPlayerName, setOpenEditPlayer } = props;
   const classes = useStyles();
-
-  console.log(name);
 
   useEffect(() => {
     if (!playerToEdit) {
@@ -52,9 +58,20 @@ const EditPlayer: React.FC<IEditPlayer> = props => {
     saveNewPlayerName(playerToEdit, name);
   };
 
+  const closeEditPlayer = () => {
+    if (!setOpenEditPlayer) {
+      return;
+    }
+    setOpenEditPlayer(false);
+  };
+
   return (
     <div className={classes.root}>
       <form className={classes.form} onSubmit={savePlayerName}>
+        <span className={classes.plus}>
+          <IoIosClose onClick={closeEditPlayer} />
+        </span>
+
         <TextField
           required
           label="Spēlētāja vārds"

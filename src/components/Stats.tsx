@@ -134,6 +134,7 @@ const Stats: React.FC<IStats> = props => {
         <EditPlayer
           playerToEdit={playerToEdit}
           saveNewPlayerName={saveNewPlayerName}
+          setOpenEditPlayer={setOpenEditPlayer}
         />
       )}
     </>
