@@ -147,6 +147,7 @@ const App: React.FC = () => {
               editPlayerName={editPlayerName}
               playerToEdit={playerToEdit}
               saveNewPlayerName={saveNewPlayerName}
+              gameNumber={gameNumber}
             />
             <div style={{ display: "flex", justifyContent: "center" }}>
               <Button

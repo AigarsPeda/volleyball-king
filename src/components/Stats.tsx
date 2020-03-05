@@ -48,6 +48,7 @@ interface IStats {
   editPlayerName?: (id: number) => void;
   playerToEdit?: Player | undefined;
   saveNewPlayerName?: (playerToEdit: Player, newName: string) => void;
+  gameNumber?: number;
 }
 
 const Stats: React.FC<IStats> = props => {
@@ -56,7 +57,8 @@ const Stats: React.FC<IStats> = props => {
     setSortingOrder,
     editPlayerName,
     playerToEdit,
-    saveNewPlayerName
+    saveNewPlayerName,
+    gameNumber
   } = props;
   const classes = useStyles();
   const [openEditPlayer, setOpenEditPlayer] = useState(false);
@@ -104,7 +106,7 @@ const Stats: React.FC<IStats> = props => {
                     scope="row"
                     className={classes.text}
                   >
-                    {editPlayerName && (
+                    {editPlayerName && gameNumber === 1 && (
                       <FaPencilAlt
                         className={classes.pencil}
                         onClick={() => editPlayer(player)}
