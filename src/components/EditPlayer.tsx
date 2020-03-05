@@ -15,7 +15,12 @@ const useStyles = makeStyles((theme: Theme) => ({
   }
 }));
 
-const EditPlayer = () => {
+interface IEditPlayer {
+  playerToEdit: Player | undefined;
+}
+
+const EditPlayer: React.FC<IEditPlayer> = props => {
+  const { playerToEdit } = props;
   const classes = useStyles();
 
   return (
@@ -25,9 +30,8 @@ const EditPlayer = () => {
         //onSubmit={makeArrayOfPlayers}
       >
         <TextField
-          label="Spēlētāja vārds"
           //required
-          //value={name}
+          value={playerToEdit?.name}
           //onChange={e => setName(e.target.value)}
           margin="normal"
           InputProps={{

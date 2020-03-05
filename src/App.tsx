@@ -16,10 +16,11 @@ const App: React.FC = () => {
   const [gameNumber, setGameNumber] = useState<number>(() =>
     JSON.parse(localStorage.getItem("gameNumber") || "1")
   );
-  const [sortingOrder, setSortingOrder] = useState("bigPoints");
   const [numberOfPlayers, setNumberOfPlayers] = useState<number>(() =>
     JSON.parse(localStorage.getItem("numberOfPlayers") || "0")
   );
+  const [sortingOrder, setSortingOrder] = useState("bigPoints");
+  const [playerToEdit, setPlayerToEdit] = useState<Player>();
 
   useEffect(() => {
     localStorage.setItem("playerArray", JSON.stringify(playerArray));
@@ -65,6 +66,11 @@ const App: React.FC = () => {
     }
     return b.id - a.id;
   });
+
+  const editPlayerName = (id: number) => {
+    const newPlayer = playerArray.find(player => player.id === id);
+    setPlayerToEdit(newPlayer);
+  };
 
   console.log(playerArray);
 
@@ -129,6 +135,8 @@ const App: React.FC = () => {
             <Stats
               sorterPlayerArray={sorterPlayerArray}
               setSortingOrder={setSortingOrder}
+              editPlayerName={editPlayerName}
+              playerToEdit={playerToEdit}
             />
             <div style={{ display: "flex", justifyContent: "center" }}>
               <Button

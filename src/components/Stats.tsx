@@ -45,11 +45,19 @@ const useStyles = makeStyles((theme: Theme) =>
 interface IStats {
   sorterPlayerArray: Player[];
   setSortingOrder: React.Dispatch<React.SetStateAction<string>>;
+  editPlayerName?: (id: number) => void;
+  playerToEdit?: Player | undefined;
 }
 
 const Stats: React.FC<IStats> = props => {
-  const { sorterPlayerArray, setSortingOrder } = props;
+  const {
+    sorterPlayerArray,
+    setSortingOrder,
+    editPlayerName,
+    playerToEdit
+  } = props;
   const classes = useStyles();
+
   return (
     <>
       <Grid container justify="center">
@@ -85,7 +93,13 @@ const Stats: React.FC<IStats> = props => {
                     scope="row"
                     className={classes.text}
                   >
-                    <FaPencilAlt className={classes.pencil} />
+                    {editPlayerName && (
+                      <FaPencilAlt
+                        className={classes.pencil}
+                        onClick={() => editPlayerName(player.id)}
+                      />
+                    )}
+
                     {player.name}
                   </TableCell>
                   <TableCell align="right" className={classes.numbers}>
@@ -100,7 +114,7 @@ const Stats: React.FC<IStats> = props => {
           </Table>
         </TableContainer>
       </Grid>
-      <EditPlayer />
+      <EditPlayer playerToEdit={playerToEdit} />
     </>
   );
 };
