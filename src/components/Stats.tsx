@@ -1,5 +1,5 @@
 import React from "react";
-
+import { FaPencilAlt } from "react-icons/fa";
 import {
   Grid,
   Paper,
@@ -33,6 +33,10 @@ const useStyles = makeStyles((theme: Theme) =>
       fontWeight: "bolder",
 
       borderBottom: "none"
+    },
+    pencil: {
+      marginRight: "15px",
+      fontSize: "10px"
     }
   })
 );
@@ -75,6 +79,7 @@ const Stats: React.FC<IStats> = props => {
             {sorterPlayerArray.map(player => (
               <TableRow key={player.id}>
                 <TableCell component="th" scope="row" className={classes.text}>
+                  <FaPencilAlt className={classes.pencil} />
                   {player.name}
                 </TableCell>
                 <TableCell align="right" className={classes.numbers}>
