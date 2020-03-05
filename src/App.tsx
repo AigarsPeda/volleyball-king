@@ -21,6 +21,7 @@ const App: React.FC = () => {
   );
   const [sortingOrder, setSortingOrder] = useState("bigPoints");
   const [playerToEdit, setPlayerToEdit] = useState<Player>();
+  const [openEditPlayer, setOpenEditPlayer] = useState(false);
 
   useEffect(() => {
     localStorage.setItem("playerArray", JSON.stringify(playerArray));
@@ -148,17 +149,21 @@ const App: React.FC = () => {
               playerToEdit={playerToEdit}
               saveNewPlayerName={saveNewPlayerName}
               gameNumber={gameNumber}
+              openEditPlayer={openEditPlayer}
+              setOpenEditPlayer={setOpenEditPlayer}
             />
             <div style={{ display: "flex", justifyContent: "center" }}>
-              <Button
-                style={{ color: "rgba(232,48,58,1)" }}
-                onClick={() => {
-                  if (window.confirm("Vai tiešām sākt jaunu turnīru?"))
-                    removePlayerArrayFromLocalStorage();
-                }}
-              >
-                JAUNS TURNĪRS
-              </Button>
+              {!openEditPlayer && (
+                <Button
+                  style={{ color: "rgba(232,48,58,1)" }}
+                  onClick={() => {
+                    if (window.confirm("Vai tiešām sākt jaunu turnīru?"))
+                      removePlayerArrayFromLocalStorage();
+                  }}
+                >
+                  JAUNS TURNĪRS
+                </Button>
+              )}
             </div>
           </>
         ) : null}

@@ -49,6 +49,8 @@ interface IStats {
   playerToEdit?: Player | undefined;
   saveNewPlayerName?: (playerToEdit: Player, newName: string) => void;
   gameNumber?: number;
+  openEditPlayer?: boolean;
+  setOpenEditPlayer?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const Stats: React.FC<IStats> = props => {
@@ -58,13 +60,14 @@ const Stats: React.FC<IStats> = props => {
     editPlayerName,
     playerToEdit,
     saveNewPlayerName,
-    gameNumber
+    gameNumber,
+    openEditPlayer,
+    setOpenEditPlayer
   } = props;
   const classes = useStyles();
-  const [openEditPlayer, setOpenEditPlayer] = useState(false);
 
   const editPlayer = (player: Player) => {
-    if (!editPlayerName) {
+    if (!editPlayerName || !setOpenEditPlayer) {
       return;
     }
     editPlayerName(player.id);
