@@ -66,7 +66,7 @@ const EditPlayer: React.FC<IEditPlayer> = props => {
           }}
         />
         <Button variant="contained" color="primary" type="submit">
-          Saglabāt spēlētāju
+          Labot spēlētāja vārdu
         </Button>
       </form>
     </div>
