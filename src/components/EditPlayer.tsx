@@ -4,9 +4,20 @@ import { Button, TextField, makeStyles, Theme } from "@material-ui/core";
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     margin: "auto",
-    maxWidth: "25em"
+    //maxWidth: "25em",
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: "rgba(60, 58, 66, 0.900)"
   },
   form: {
+    paddingTop: "15em",
+    paddingLeft: "5px",
+    paddingRight: "5px",
+    margin: "auto",
+    maxWidth: "500px",
     display: "flex",
     flexDirection: "column"
   },

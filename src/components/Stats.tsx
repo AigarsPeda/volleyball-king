@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaPencilAlt } from "react-icons/fa";
 import {
   Grid,
@@ -59,6 +59,15 @@ const Stats: React.FC<IStats> = props => {
     saveNewPlayerName
   } = props;
   const classes = useStyles();
+  const [openEditPlayer, setOpenEditPlayer] = useState(false);
+
+  const editPlayer = (player: Player) => {
+    if (!editPlayerName) {
+      return;
+    }
+    editPlayerName(player.id);
+    setOpenEditPlayer(true);
+  };
 
   return (
     <>
@@ -98,7 +107,7 @@ const Stats: React.FC<IStats> = props => {
                     {editPlayerName && (
                       <FaPencilAlt
                         className={classes.pencil}
-                        onClick={() => editPlayerName(player.id)}
+                        onClick={() => editPlayer(player)}
                       />
                     )}
 
@@ -116,7 +125,7 @@ const Stats: React.FC<IStats> = props => {
           </Table>
         </TableContainer>
       </Grid>
-      {editPlayerName && saveNewPlayerName && (
+      {editPlayerName && saveNewPlayerName && openEditPlayer && (
         <EditPlayer
           playerToEdit={playerToEdit}
           saveNewPlayerName={saveNewPlayerName}
