@@ -10,6 +10,8 @@ import {
   Grid
 } from "@material-ui/core";
 
+import { languagesText } from "../data/language";
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     button: {
@@ -42,11 +44,12 @@ const useStyles = makeStyles((theme: Theme) =>
 interface IPlayerCountSelect {
   numberOfPlayers: number | undefined;
   setNumberOfPlayers: React.Dispatch<React.SetStateAction<number>>;
+  language: Lang;
 }
 
 const PlayerCountSelect: React.FC<IPlayerCountSelect> = props => {
   const classes = useStyles();
-  const { numberOfPlayers, setNumberOfPlayers } = props;
+  const { numberOfPlayers, setNumberOfPlayers, language } = props;
 
   const [open, setOpen] = React.useState(false);
 
@@ -69,10 +72,16 @@ const PlayerCountSelect: React.FC<IPlayerCountSelect> = props => {
       </Grid>
       <Grid item style={{ margin: "auto" }}>
         <Button className={classes.button} onClick={handleOpen}>
-          Cik spēlētāju būs?
+          {language.checkedENG
+            ? languagesText.eng.howManyPlayers
+            : languagesText.lv.howManyPlayers}
         </Button>
         <FormControl className={classes.formControl}>
-          <InputLabel id="demo-controlled-open-select-label">Skaits</InputLabel>
+          <InputLabel id="demo-controlled-open-select-label">
+            {language.checkedENG
+              ? languagesText.eng.count
+              : languagesText.lv.count}
+          </InputLabel>
           <Select
             labelId="demo-controlled-open-select-label"
             id="demo-controlled-open-select"
@@ -87,10 +96,18 @@ const PlayerCountSelect: React.FC<IPlayerCountSelect> = props => {
             </MenuItem>
 
             <MenuItem value={4} style={{ letterSpacing: "1px" }}>
-              <em>Četri</em>
+              <em>
+                {language.checkedENG
+                  ? languagesText.eng.four
+                  : languagesText.lv.four}
+              </em>
             </MenuItem>
             <MenuItem value={5} style={{ letterSpacing: "1px" }}>
-              <em>Pieci</em>
+              <em>
+                {language.checkedENG
+                  ? languagesText.eng.five
+                  : languagesText.lv.five}
+              </em>
             </MenuItem>
           </Select>
         </FormControl>

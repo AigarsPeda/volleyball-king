@@ -13,6 +13,7 @@ import {
 
 import { gameForFive, gameForFour } from "../Utils/gameLogic";
 import { whoIsWinner } from "../Utils//findWinner";
+import { languagesText } from "../data/language";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -72,6 +73,7 @@ interface IGame {
   setGameNumber: React.Dispatch<any>;
   gameNumber: number;
   numberOfPlayers: number;
+  language: Lang;
 }
 
 const Game: React.FC<IGame> = props => {
@@ -80,7 +82,8 @@ const Game: React.FC<IGame> = props => {
     setPlayerArray,
     setGameNumber,
     gameNumber,
-    numberOfPlayers
+    numberOfPlayers,
+    language
   } = props;
   const classes = useStyles();
 
@@ -190,7 +193,9 @@ const Game: React.FC<IGame> = props => {
               color="primary"
               className={classes.button}
             >
-              Nākamā spēle
+              {language.checkedENG
+                ? languagesText.eng.nextGame
+                : languagesText.lv.nextGame}
             </Button>
           </Grid>
           <Grid item lg={12} xs={10}>
@@ -203,7 +208,9 @@ const Game: React.FC<IGame> = props => {
               }}
             >
               <h4 style={{ letterSpacing: "2px" }}>
-                Spēle Nr{" "}
+                {language.checkedENG
+                  ? languagesText.eng.gameNumber
+                  : languagesText.lv.gameNumber}{" "}
                 <span style={{ fontSize: "28px", color: "rgba(232,48,58,1)" }}>
                   {gameNumber}
                 </span>{" "}

@@ -14,6 +14,7 @@ import {
   TableBody
 } from "@material-ui/core";
 import EditPlayer from "./EditPlayer";
+import { languagesText } from "../data/language";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -51,6 +52,7 @@ interface IStats {
   gameNumber?: number;
   openEditPlayer?: boolean;
   setOpenEditPlayer?: React.Dispatch<React.SetStateAction<boolean>>;
+  language: Lang;
 }
 
 const Stats: React.FC<IStats> = props => {
@@ -62,7 +64,8 @@ const Stats: React.FC<IStats> = props => {
     saveNewPlayerName,
     gameNumber,
     openEditPlayer,
-    setOpenEditPlayer
+    setOpenEditPlayer,
+    language
   } = props;
   const classes = useStyles();
 
@@ -90,14 +93,18 @@ const Stats: React.FC<IStats> = props => {
                   className={classes.text}
                   onClick={() => setSortingOrder("smallPoints")}
                 >
-                  Punkti
+                  {language.checkedENG
+                    ? languagesText.eng.points
+                    : languagesText.lv.points}
                 </TableCell>
                 <TableCell
                   align="right"
                   className={classes.text}
                   onClick={() => setSortingOrder("bigPoints")}
                 >
-                  Uzvaras
+                  {language.checkedENG
+                    ? languagesText.eng.wins
+                    : languagesText.eng.wins}
                 </TableCell>
               </TableRow>
             </TableHead>
@@ -132,6 +139,7 @@ const Stats: React.FC<IStats> = props => {
       </Grid>
       {editPlayerName && saveNewPlayerName && openEditPlayer && (
         <EditPlayer
+          language={language}
           playerToEdit={playerToEdit}
           saveNewPlayerName={saveNewPlayerName}
           setOpenEditPlayer={setOpenEditPlayer}

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Button, TextField, makeStyles, Theme } from "@material-ui/core";
+import { languagesText } from "../data/language";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -26,10 +27,11 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 interface IForm {
   savePlayerArrayToSate: (name: string) => void;
+  language: Lang;
 }
 
 const Form: React.FC<IForm> = props => {
-  const { savePlayerArrayToSate } = props;
+  const { savePlayerArrayToSate, language } = props;
 
   const [name, setName] = useState<string>("");
   const classes = useStyles();
@@ -44,7 +46,11 @@ const Form: React.FC<IForm> = props => {
     <div className={classes.root}>
       <form className={classes.form} onSubmit={makeArrayOfPlayers}>
         <TextField
-          label="Spēlētāja vārds"
+          label={
+            language.checkedENG
+              ? languagesText.eng.playersName
+              : languagesText.lv.playersName
+          }
           required
           value={name}
           onChange={e => setName(e.target.value)}
@@ -59,7 +65,9 @@ const Form: React.FC<IForm> = props => {
           className={classes.button}
           type="submit"
         >
-          Pievienot spēlētāju
+          {language.checkedENG
+            ? languagesText.eng.addPlayer
+            : languagesText.lv.addPlayer}
         </Button>
       </form>
     </div>

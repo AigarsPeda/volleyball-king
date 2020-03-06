@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { ThemeProvider } from "@material-ui/core/styles";
 import theme from "./ui/Theme";
-import { Button } from "@material-ui/core";
+import { Button, Switch } from "@material-ui/core";
 
 import Form from "./components/Form";
 import Game from "./components/Game";
 import Stats from "./components/Stats";
 import TournamentEnd from "./components/TournamentEnd";
 import PlayerCountSelect from "./components/PlayerCountSelect";
+
+import { languagesText } from "./data/language";
 
 const App: React.FC = () => {
   const [playerArray, setPlayerArray] = useState<Player[]>(() =>
@@ -19,6 +21,10 @@ const App: React.FC = () => {
   const [numberOfPlayers, setNumberOfPlayers] = useState<number>(() =>
     JSON.parse(localStorage.getItem("numberOfPlayers") || "0")
   );
+  const [language, setLanguage] = useState<Lang>(() =>
+    JSON.parse(localStorage.getItem("language") || "{checkedENG: false}")
+  );
+
   const [sortingOrder, setSortingOrder] = useState("bigPoints");
   const [playerToEdit, setPlayerToEdit] = useState<Player>();
   const [openEditPlayer, setOpenEditPlayer] = useState(false);
@@ -27,7 +33,8 @@ const App: React.FC = () => {
     localStorage.setItem("playerArray", JSON.stringify(playerArray));
     localStorage.setItem("gameNumber", JSON.stringify(gameNumber));
     localStorage.setItem("numberOfPlayers", JSON.stringify(numberOfPlayers));
-  }, [playerArray, gameNumber, numberOfPlayers]);
+    localStorage.setItem("language", JSON.stringify(language));
+  }, [playerArray, gameNumber, numberOfPlayers, language]);
 
   const removePlayerArrayFromLocalStorage = () => {
     let newPlayerArray = playerArray;
@@ -86,10 +93,25 @@ const App: React.FC = () => {
     setPlayerArray(newPlayerArray);
   };
 
+  const handleChange = (name: string) => (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setLanguage({ ...language, [name]: event.target.checked });
+  };
+
   if (numberOfPlayers === 0) {
     return (
       <ThemeProvider theme={theme}>
+        {console.log(language)}
+        <Switch
+          checked={language.checkedENG}
+          onChange={handleChange("checkedENG")}
+          value="checkedB"
+          color="primary"
+          inputProps={{ "aria-label": "primary checkbox" }}
+        />
         <PlayerCountSelect
+          language={language}
           numberOfPlayers={numberOfPlayers}
           setNumberOfPlayers={setNumberOfPlayers}
         />
@@ -105,6 +127,7 @@ const App: React.FC = () => {
       <ThemeProvider theme={theme}>
         <div style={{ padding: "5px" }}>
           <TournamentEnd
+            language={language}
             sorterPlayerArray={sorterPlayerArray}
             setSortingOrder={setSortingOrder}
             removePlayerArrayFromLocalStorage={
@@ -120,9 +143,13 @@ const App: React.FC = () => {
     <ThemeProvider theme={theme}>
       <div style={{ padding: "5px" }}>
         {playerArray.length < numberOfPlayers ? (
-          <Form savePlayerArrayToSate={savePlayerArrayToSate} />
+          <Form
+            savePlayerArrayToSate={savePlayerArrayToSate}
+            language={language}
+          />
         ) : (
           <Game
+            language={language}
             playerArray={playerArray}
             setPlayerArray={setPlayerArray}
             gameNumber={gameNumber}
@@ -136,7 +163,9 @@ const App: React.FC = () => {
               onClick={removePlayerArrayFromLocalStorage}
               style={{ color: "rgba(232,48,58,1)" }}
             >
-              Atpakaļ
+              {language.checkedENG
+                ? languagesText.eng.buttonBack
+                : languagesText.lv.buttonBack}
             </Button>
           </div>
         )}
@@ -151,17 +180,26 @@ const App: React.FC = () => {
               gameNumber={gameNumber}
               openEditPlayer={openEditPlayer}
               setOpenEditPlayer={setOpenEditPlayer}
+              language={language}
             />
             <div style={{ display: "flex", justifyContent: "center" }}>
               {!openEditPlayer && (
                 <Button
                   style={{ color: "rgba(232,48,58,1)" }}
                   onClick={() => {
-                    if (window.confirm("Vai tiešām sākt jaunu turnīru?"))
+                    if (
+                      window.confirm(
+                        language.checkedENG
+                          ? languagesText.eng.newTournamentsConfirm
+                          : languagesText.lv.newTournamentsConfirm
+                      )
+                    )
                       removePlayerArrayFromLocalStorage();
                   }}
                 >
-                  JAUNS TURNĪRS
+                  {language.checkedENG
+                    ? languagesText.eng.newTournaments
+                    : languagesText.lv.newTournaments}
                 </Button>
               )}
             </div>

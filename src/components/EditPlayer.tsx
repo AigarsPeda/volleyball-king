@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Button, TextField, makeStyles, Theme } from "@material-ui/core";
 import { IoIosClose } from "react-icons/io";
+import { languagesText } from "../data/language";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     margin: "auto",
-    //maxWidth: "25em",
     position: "absolute",
     top: 0,
     left: 0,
@@ -37,11 +37,17 @@ interface IEditPlayer {
   playerToEdit: Player | undefined;
   saveNewPlayerName: (playerToEdit: Player, newName: string) => void;
   setOpenEditPlayer: React.Dispatch<React.SetStateAction<boolean>> | undefined;
+  language: Lang;
 }
 
 const EditPlayer: React.FC<IEditPlayer> = props => {
   const [name, setName] = useState("");
-  const { playerToEdit, saveNewPlayerName, setOpenEditPlayer } = props;
+  const {
+    playerToEdit,
+    saveNewPlayerName,
+    setOpenEditPlayer,
+    language
+  } = props;
   const classes = useStyles();
 
   useEffect(() => {
@@ -74,7 +80,11 @@ const EditPlayer: React.FC<IEditPlayer> = props => {
 
         <TextField
           required
-          label="Spēlētāja vārds"
+          label={
+            language.checkedENG
+              ? languagesText.eng.playersName
+              : languagesText.lv.playersName
+          }
           value={name}
           onChange={e => setName(e.target.value)}
           margin="normal"
@@ -83,7 +93,9 @@ const EditPlayer: React.FC<IEditPlayer> = props => {
           }}
         />
         <Button variant="contained" color="primary" type="submit">
-          Labot spēlētāja vārdu
+          {language.checkedENG
+            ? languagesText.eng.editPlayersName
+            : languagesText.lv.editPlayersName}
         </Button>
       </form>
     </div>

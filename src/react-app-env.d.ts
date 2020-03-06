@@ -31,3 +31,7 @@ type Language = {
   newTournaments: string;
   newTournamentsConfirm: string;
 };
+
+type Lang = {
+  checkedENG: boolean;
+};

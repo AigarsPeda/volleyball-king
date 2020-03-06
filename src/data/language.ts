@@ -1,4 +1,4 @@
-export const mainText: MainText = {
+export const languagesText: MainText = {
   eng: {
     text:
       "Hi! My name is Aigars, I am front end developer and I’m looking for a job",
