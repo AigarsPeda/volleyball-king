@@ -103,13 +103,34 @@ const App: React.FC = () => {
     return (
       <ThemeProvider theme={theme}>
         {console.log(language)}
-        <Switch
-          checked={language.checkedENG}
-          onChange={handleChange("checkedENG")}
-          value="checkedB"
-          color="primary"
-          inputProps={{ "aria-label": "primary checkbox" }}
-        />
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "flex-end",
+            textAlign: "center",
+            padding: "7px"
+          }}
+        >
+          <Switch
+            checked={language.checkedENG}
+            onChange={handleChange("checkedENG")}
+            value="checkedB"
+            color="primary"
+            inputProps={{ "aria-label": "primary checkbox" }}
+          />
+          <h2
+            style={{
+              marginTop: "auto",
+              marginBottom: "auto",
+              paddingLeft: "10px",
+              paddingRight: "10px",
+              color: "#fff"
+            }}
+          >
+            {language.checkedENG ? "LV" : "ENG"}
+          </h2>
+        </div>
         <PlayerCountSelect
           language={language}
           numberOfPlayers={numberOfPlayers}
