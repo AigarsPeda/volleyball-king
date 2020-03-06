@@ -25,8 +25,6 @@ const App: React.FC = () => {
     JSON.parse(localStorage.getItem("language") || "{ checkedENG: false }")
   );
 
-  const defaultLang = { checkedENG: false };
-
   const [sortingOrder, setSortingOrder] = useState("bigPoints");
   const [playerToEdit, setPlayerToEdit] = useState<Player>();
   const [openEditPlayer, setOpenEditPlayer] = useState(false);
@@ -104,7 +102,6 @@ const App: React.FC = () => {
   if (numberOfPlayers === 0) {
     return (
       <ThemeProvider theme={theme}>
-        {console.log(language)}
         <div
           style={{
             display: "flex",
