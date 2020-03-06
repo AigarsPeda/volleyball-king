@@ -22,7 +22,7 @@ const App: React.FC = () => {
     JSON.parse(localStorage.getItem("numberOfPlayers") || "0")
   );
   const [language, setLanguage] = useState<Lang>(() =>
-    JSON.parse(localStorage.getItem("language") || " { checkedENG: false } ")
+    JSON.parse(localStorage.getItem("language") || `{"checkedENG": false }`)
   );
 
   const [sortingOrder, setSortingOrder] = useState("bigPoints");
