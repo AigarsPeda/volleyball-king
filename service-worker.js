@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/volleyball-king/precache-manifest.7ec342060b840ef4ca4a075fd829f522.js"
+  "/volleyball-king/precache-manifest.6b495eea22194e2f0c46799e95c721b1.js"
 );
 
 self.addEventListener('message', (event) => {
