@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { ThemeProvider } from "@material-ui/core/styles";
 import theme from "./ui/Theme";
 import { Button, Switch } from "@material-ui/core";
@@ -10,32 +10,29 @@ import TournamentEnd from "./components/TournamentEnd";
 import PlayerCountSelect from "./components/PlayerCountSelect";
 
 import { languagesText } from "./data/language";
-//import useLocalStorage from "./hooks/useLocalStorage";
+import useLocalStorage from "./hooks/useLocalStorage";
 
 const App: React.FC = () => {
-  const [playerArray, setPlayerArray] = useState<Player[]>(() =>
-    JSON.parse(localStorage.getItem("playerArray") || "[]")
+  const [playerArray, setPlayerArray] = useLocalStorage<Player[]>(
+    "playerArray",
+    "[]"
   );
-  const [gameNumber, setGameNumber] = useState<number>(() =>
-    JSON.parse(localStorage.getItem("gameNumber") || "1")
+  const [gameNumber, setGameNumber] = useLocalStorage<number>(
+    "gameNumber",
+    "1"
   );
-  const [numberOfPlayers, setNumberOfPlayers] = useState<number>(() =>
-    JSON.parse(localStorage.getItem("numberOfPlayers") || "0")
+  const [numberOfPlayers, setNumberOfPlayers] = useLocalStorage<number>(
+    "numberOfPlayers",
+    "0"
   );
-  const [language, setLanguage] = useState<Lang>(() =>
-    JSON.parse(localStorage.getItem("language") || `{"checkedENG": false }`)
+  const [language, setLanguage] = useLocalStorage<Lang>(
+    "language",
+    `{"checkedENG": false }`
   );
 
   const [sortingOrder, setSortingOrder] = useState("bigPoints");
   const [playerToEdit, setPlayerToEdit] = useState<Player>();
   const [openEditPlayer, setOpenEditPlayer] = useState(false);
-
-  useEffect(() => {
-    localStorage.setItem("playerArray", JSON.stringify(playerArray));
-    localStorage.setItem("gameNumber", JSON.stringify(gameNumber));
-    localStorage.setItem("numberOfPlayers", JSON.stringify(numberOfPlayers));
-    localStorage.setItem("language", JSON.stringify(language));
-  }, [playerArray, gameNumber, numberOfPlayers, language]);
 
   const removePlayerArrayFromLocalStorage = () => {
     let newPlayerArray = playerArray;

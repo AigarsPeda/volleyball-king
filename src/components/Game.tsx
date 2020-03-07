@@ -69,7 +69,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 interface IGame {
   playerArray: Player[];
-  setPlayerArray: React.Dispatch<React.SetStateAction<Player[]>>;
+  setPlayerArray: React.Dispatch<Player[]>;
   setGameNumber: React.Dispatch<any>;
   gameNumber: number;
   numberOfPlayers: number;

@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 interface IPlayerCountSelect {
   numberOfPlayers: number | undefined;
-  setNumberOfPlayers: React.Dispatch<React.SetStateAction<number>>;
+  setNumberOfPlayers: React.Dispatch<number>;
   language: Lang;
 }
 
