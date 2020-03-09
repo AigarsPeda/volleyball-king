@@ -97,6 +97,7 @@ const App: React.FC = () => {
     setLanguage({ ...language, [name]: event.target.checked });
   };
 
+  // Select how many players will play
   if (numberOfPlayers === 0) {
     return (
       <ThemeProvider theme={theme}>
@@ -111,6 +112,7 @@ const App: React.FC = () => {
     );
   }
 
+  // Display tournament end screen
   if (
     (gameNumber === 16 && numberOfPlayers === 5) ||
     (gameNumber === 10 && numberOfPlayers === 4)
