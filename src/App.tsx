@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { ThemeProvider } from "@material-ui/core/styles";
 import theme from "./ui/Theme";
-import { Button, Switch } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 
 import Form from "./components/Form";
 import Game from "./components/Game";
 import Stats from "./components/Stats";
 import TournamentEnd from "./components/TournamentEnd";
-import PlayerCountSelect from "./components/PlayerCountSelect";
+import PlayerSelect from "./components/PlayerSelect";
 
 import { languagesText } from "./data/language";
 import useLocalStorage from "./hooks/useLocalStorage";
@@ -100,35 +100,9 @@ const App: React.FC = () => {
   if (numberOfPlayers === 0) {
     return (
       <ThemeProvider theme={theme}>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "flex-end",
-            textAlign: "center",
-            padding: "7px"
-          }}
-        >
-          <Switch
-            checked={language.checkedENG}
-            onChange={handleChange("checkedENG")}
-            value="checkedB"
-            color="primary"
-            inputProps={{ "aria-label": "primary checkbox" }}
-          />
-          <h2
-            style={{
-              marginTop: "auto",
-              marginBottom: "auto",
-              paddingLeft: "10px",
-              paddingRight: "10px",
-              color: "#fff"
-            }}
-          >
-            {language.checkedENG ? "LV" : "ENG"}
-          </h2>
-        </div>
-        <PlayerCountSelect
+        <PlayerSelect
+          checkedENG={language.checkedENG}
+          handleChange={handleChange}
           language={language}
           numberOfPlayers={numberOfPlayers}
           setNumberOfPlayers={setNumberOfPlayers}
